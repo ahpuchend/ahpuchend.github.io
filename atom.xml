@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://ahpuchend.github.io/"/>
-  <updated>2019-09-18T08:51:37.912Z</updated>
+  <updated>2019-09-18T08:44:59.072Z</updated>
   <id>https://ahpuchend.github.io/</id>
   
   <author>
@@ -15,21 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>pic test</title>
-    <link href="https://ahpuchend.github.io/2019/09/18/pic-test/"/>
-    <id>https://ahpuchend.github.io/2019/09/18/pic-test/</id>
-    <published>2019-09-18T08:51:37.000Z</published>
-    <updated>2019-09-18T08:51:37.912Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-    
-  </entry>
   
   <entry>
     <title>hexo 图片</title>
