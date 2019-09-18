@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://ahpuchend.github.io/"/>
-  <updated>2019-09-18T08:44:59.072Z</updated>
+  <updated>2019-09-18T08:51:37.912Z</updated>
   <id>https://ahpuchend.github.io/</id>
   
   <author>
@@ -17,20 +17,35 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>pic test</title>
+    <link href="https://ahpuchend.github.io/2019/09/18/pic-test/"/>
+    <id>https://ahpuchend.github.io/2019/09/18/pic-test/</id>
+    <published>2019-09-18T08:51:37.000Z</published>
+    <updated>2019-09-18T08:51:37.912Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>hexo 图片</title>
     <link href="https://ahpuchend.github.io/2019/09/18/hexo-%E5%9B%BE%E7%89%87/"/>
     <id>https://ahpuchend.github.io/2019/09/18/hexo-图片/</id>
     <published>2019-09-18T07:38:43.000Z</published>
     <updated>2019-09-18T08:44:59.072Z</updated>
     
-    <content type="html"><![CDATA[<p>下面是一张图片</p><p><img src="hexo-%E5%9B%BE%E7%89%87/user.jpg" alt="狗头"></p>]]></content>
+    <content type="html"><![CDATA[<p>下面是一张图片</p><p><img src="/.io//user.jpg" alt="狗头"></p>]]></content>
     
     <summary type="html">
     
       
       
         &lt;p&gt;下面是一张图片&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;hexo-%E5%9B%BE%E7%89%87/user.jpg&quot; alt=&quot;狗头&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/.io//user.jpg&quot; alt=&quot;狗头&quot;&gt;&lt;/p&gt;
 
       
     
@@ -47,15 +62,15 @@
     <link href="https://ahpuchend.github.io/2019/09/18/%E6%B5%8B%E8%AF%95%E5%9B%BE%E7%89%87%E9%9B%86/"/>
     <id>https://ahpuchend.github.io/2019/09/18/测试图片集/</id>
     <published>2019-09-18T06:24:10.000Z</published>
-    <updated>2019-09-18T07:20:47.860Z</updated>
+    <updated>2019-09-18T08:49:28.984Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="这是一张图片"><a href="#这是一张图片" class="headerlink" title="这是一张图片"></a>这是一张图片</h1><p><img src="logo.jpg" alt="脸红"></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="这是一张图片"><a href="#这是一张图片" class="headerlink" title="这是一张图片"></a>这是一张图片</h1><p><img src="/.io//logo.jpg" alt="脸红"></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h1 id=&quot;这是一张图片&quot;&gt;&lt;a href=&quot;#这是一张图片&quot; class=&quot;headerlink&quot; title=&quot;这是一张图片&quot;&gt;&lt;/a&gt;这是一张图片&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;logo.jpg&quot; alt=&quot;脸红&quot;&gt;&lt;/p&gt;
+        &lt;h1 id=&quot;这是一张图片&quot;&gt;&lt;a href=&quot;#这是一张图片&quot; class=&quot;headerlink&quot; title=&quot;这是一张图片&quot;&gt;&lt;/a&gt;这是一张图片&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;/.io//logo.jpg&quot; alt=&quot;脸红&quot;&gt;&lt;/p&gt;
 
       
     
