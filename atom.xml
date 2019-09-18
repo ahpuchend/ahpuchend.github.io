@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://ahpuchend.github.io/"/>
-  <updated>2019-09-18T07:20:47.860Z</updated>
+  <updated>2019-09-18T07:40:16.941Z</updated>
   <id>https://ahpuchend.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hexo 图片</title>
+    <link href="https://ahpuchend.github.io/2019/09/18/hexo-%E5%9B%BE%E7%89%87/"/>
+    <id>https://ahpuchend.github.io/2019/09/18/hexo-图片/</id>
+    <published>2019-09-18T07:38:43.000Z</published>
+    <updated>2019-09-18T07:40:16.941Z</updated>
+    
+    <content type="html"><![CDATA[<p>下面是一张图片<br><img src="/.io//user.jpg" alt="狗头"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;下面是一张图片&lt;br&gt;&lt;img src=&quot;/.io//user.jpg&quot; alt=&quot;狗头&quot;&gt;&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+    
+      <category term="hexo" scheme="https://ahpuchend.github.io/tags/hexo/"/>
+    
+  </entry>
   
   <entry>
     <title>测试图片集</title>
