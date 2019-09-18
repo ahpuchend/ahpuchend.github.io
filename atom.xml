@@ -38,14 +38,14 @@
     <published>2019-09-18T07:38:43.000Z</published>
     <updated>2019-09-18T08:44:59.072Z</updated>
     
-    <content type="html"><![CDATA[<p>下面是一张图片</p><p><img src="/.io//user.jpg" alt="狗头"></p>]]></content>
+    <content type="html"><![CDATA[<p>下面是一张图片</p><p><img src="/2019/09/18/hexo-图片/user.jpg" alt="狗头"></p>]]></content>
     
     <summary type="html">
     
       
       
         &lt;p&gt;下面是一张图片&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/.io//user.jpg&quot; alt=&quot;狗头&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2019/09/18/hexo-图片/user.jpg&quot; alt=&quot;狗头&quot;&gt;&lt;/p&gt;
 
       
     
@@ -64,13 +64,13 @@
     <published>2019-09-18T06:24:10.000Z</published>
     <updated>2019-09-18T08:49:28.984Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="这是一张图片"><a href="#这是一张图片" class="headerlink" title="这是一张图片"></a>这是一张图片</h1><p><img src="/.io//logo.jpg" alt="脸红"></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="这是一张图片"><a href="#这是一张图片" class="headerlink" title="这是一张图片"></a>这是一张图片</h1><p><img src="/2019/09/18/测试图片集/logo.jpg" alt="脸红"></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h1 id=&quot;这是一张图片&quot;&gt;&lt;a href=&quot;#这是一张图片&quot; class=&quot;headerlink&quot; title=&quot;这是一张图片&quot;&gt;&lt;/a&gt;这是一张图片&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;/.io//logo.jpg&quot; alt=&quot;脸红&quot;&gt;&lt;/p&gt;
+        &lt;h1 id=&quot;这是一张图片&quot;&gt;&lt;a href=&quot;#这是一张图片&quot; class=&quot;headerlink&quot; title=&quot;这是一张图片&quot;&gt;&lt;/a&gt;这是一张图片&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;/2019/09/18/测试图片集/logo.jpg&quot; alt=&quot;脸红&quot;&gt;&lt;/p&gt;
 
       
     
