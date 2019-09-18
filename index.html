@@ -288,10 +288,15 @@
 
       
           <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">//函数对象 ：若一个类重载了运算符“()”,</span><br><span class="line">//则该类的对象就成为函数对象</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">#include&lt;list&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">#include&lt;string&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">class CMyAverage&#123;</span><br><span class="line">	public:</span><br><span class="line">		double operator() (int a1,int a2,int a3)&#123;</span><br><span class="line">			return (double)(a1+a2+a3)/3;</span><br><span class="line">		&#125; </span><br><span class="line">	&#125;;</span><br><span class="line">int main(void)&#123;</span><br><span class="line">	CMyAverage average;</span><br><span class="line">	cout&lt;&lt;average(3,2,3);//等价与averger.operator()(3,2,3) </span><br><span class="line">	return 0; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">//函数对象</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">#include&lt;functional&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">#include&lt;numeric&gt; </span><br><span class="line">using namespace std;</span><br><span class="line">int sumSquares(int total,int value)&#123;</span><br><span class="line">	return total+value*value;</span><br><span class="line">&#125;</span><br><span class="line">template &lt;class T&gt;</span><br><span class="line">void PrintInterval(T first,T last)&#123;</span><br><span class="line">	for(;first!=last;++first)&#123;</span><br><span class="line">		cout&lt;&lt;*first&lt;&lt;&quot;,&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line">template &lt;class T&gt;</span><br><span class="line">class SumPowers&#123;</span><br><span class="line">	private:</span><br><span class="line">		int power;</span><br><span class="line">	public:</span><br><span class="line">		SumPowers(int p):power(p)&#123;</span><br><span class="line">		&#125;</span><br><span class="line">		const T operator() (const T &amp; total,const T &amp; value)&#123;</span><br><span class="line">			//计算value 的power 次方，加到total上</span><br><span class="line">			T v=value;</span><br><span class="line">			for(int i=0;i&lt;power-1;++i)</span><br><span class="line">				v=v*value; </span><br><span class="line">			return total+v;	</span><br><span class="line">		&#125;	</span><br><span class="line">		</span><br><span class="line">&#125;;</span><br><span class="line">int main(void)&#123;</span><br><span class="line">	const int SIZE=10;</span><br><span class="line">	int a1[]=&#123;1,2,3,4,5,6,7,8,9,10&#125;;</span><br><span class="line">	vector&lt;int&gt; v(a1,a1+SIZE);</span><br><span class="line">	cout&lt;&lt;&quot;1)&quot;;PrintInterval(v.begin(),v.end());</span><br><span class="line">	int result=accumulate(v.begin(),v.end(),0,sumSquares);</span><br><span class="line">	cout&lt;&lt;&quot;2)平方和 &quot;&lt;&lt;result&lt;&lt;endl;</span><br><span class="line">	result=accumulate(v.begin(),v.end(),0,SumPowers&lt;int&gt;(3));</span><br><span class="line">	cout&lt;&lt;&quot;3)立方和&quot;&lt;&lt;result&lt;&lt;endl;</span><br><span class="line">	result=accumulate(v.begin(),v.end(),0,SumPowers&lt;int&gt;(4));</span><br><span class="line">	cout&lt;&lt;&quot;4)4次方和&quot;&lt;&lt;result; </span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/09/18/算法设计/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -360,19 +365,15 @@
 
       
           <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/09/17/hello-world/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
