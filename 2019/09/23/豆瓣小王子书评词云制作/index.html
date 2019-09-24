@@ -56,19 +56,19 @@
   };
 </script>
 
-  <meta name="description" content="主要的想法就是先用request.get()方法获取一些url，得到url的html后再用beautifulsoup解析这些网页，获取用户的id,name,href,commnet这四个属性然后在用户的这些属性存入数据库，又添加了一些无聊的数据库的增删改查功能接着从数据库取出所有的评论，一边取一边用正则清洗一些无用的评论，然后直接用列表存一下清洗后的评论（反正数据比较少），然后用jieba库来中文">
+  <meta name="description" content="主要的想法就是先用request.get()方法获取一些url，得到url的html后再用beautifulsoup解析这些网页，获取用户的id,name,href,commnet这四个属性,然后在用户的这些属性存入数据库，又添加了一些无聊的数据库的增删改查功能,接着从数据库取出所有的评论，一边取一边用正则清洗一些无用的评论，然后直接用列表存一下清洗后的评论（反正数据比较少），然后用jieba库来">
 <meta name="keywords" content="编程语言">
 <meta property="og:type" content="article">
 <meta property="og:title" content="豆瓣小王子书评词云制作">
 <meta property="og:url" content="https://ahpuchend.github.io/2019/09/23/豆瓣小王子书评词云制作/index.html">
 <meta property="og:site_name" content="AIdreamer">
-<meta property="og:description" content="主要的想法就是先用request.get()方法获取一些url，得到url的html后再用beautifulsoup解析这些网页，获取用户的id,name,href,commnet这四个属性然后在用户的这些属性存入数据库，又添加了一些无聊的数据库的增删改查功能接着从数据库取出所有的评论，一边取一边用正则清洗一些无用的评论，然后直接用列表存一下清洗后的评论（反正数据比较少），然后用jieba库来中文">
+<meta property="og:description" content="主要的想法就是先用request.get()方法获取一些url，得到url的html后再用beautifulsoup解析这些网页，获取用户的id,name,href,commnet这四个属性,然后在用户的这些属性存入数据库，又添加了一些无聊的数据库的增删改查功能,接着从数据库取出所有的评论，一边取一边用正则清洗一些无用的评论，然后直接用列表存一下清洗后的评论（反正数据比较少），然后用jieba库来">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://ahpuchend.github.io/2019/09/23/豆瓣小王子书评词云制作/littleprincewordcloud.png">
-<meta property="og:updated_time" content="2019-09-23T13:33:40.410Z">
+<meta property="og:updated_time" content="2019-09-24T00:43:22.184Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="豆瓣小王子书评词云制作">
-<meta name="twitter:description" content="主要的想法就是先用request.get()方法获取一些url，得到url的html后再用beautifulsoup解析这些网页，获取用户的id,name,href,commnet这四个属性然后在用户的这些属性存入数据库，又添加了一些无聊的数据库的增删改查功能接着从数据库取出所有的评论，一边取一边用正则清洗一些无用的评论，然后直接用列表存一下清洗后的评论（反正数据比较少），然后用jieba库来中文">
+<meta name="twitter:description" content="主要的想法就是先用request.get()方法获取一些url，得到url的html后再用beautifulsoup解析这些网页，获取用户的id,name,href,commnet这四个属性,然后在用户的这些属性存入数据库，又添加了一些无聊的数据库的增删改查功能,接着从数据库取出所有的评论，一边取一边用正则清洗一些无用的评论，然后直接用列表存一下清洗后的评论（反正数据比较少），然后用jieba库来">
 <meta name="twitter:image" content="https://ahpuchend.github.io/2019/09/23/豆瓣小王子书评词云制作/littleprincewordcloud.png">
   <link rel="canonical" href="https://ahpuchend.github.io/2019/09/23/豆瓣小王子书评词云制作/">
 
@@ -260,12 +260,33 @@
                 
               
 
-              <time title="Created: 2019-09-23 21:03:46 / Modified: 21:33:40" itemprop="dateCreated datePublished" datetime="2019-09-23T21:03:46+08:00">2019-09-23</time>
+              <time title="Created: 2019-09-23 21:03:46" itemprop="dateCreated datePublished" datetime="2019-09-23T21:03:46+08:00">2019-09-23</time>
             </span>
           
             
 
             
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-09-24 08:43:22" itemprop="dateModified" datetime="2019-09-24T08:43:22+08:00">2019-09-24</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python爬虫/" itemprop="url" rel="index"><span itemprop="name">python爬虫</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -287,7 +308,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>主要的想法就是先用request.get()方法获取一些url，得到url的html后再用beautifulsoup解析这些网页，获取用户的id,name,href,commnet这四个属性<br>然后在用户的这些属性存入数据库，又添加了一些无聊的数据库的增删改查功能<br>接着从数据库取出所有的评论，一边取一边用正则清洗一些无用的评论，然后直接用列表存一下清洗后的评论（反正数据比较少），然后用jieba库来中文分词，最后<br>用wordcloude库生成词云。ui可以自定义，我做得超丑（主要觉得没意思[摊手]）</p><a id="more"></a>
+        <p>主要的想法就是先用request.get()方法获取一些url，得到url的html后再用beautifulsoup解析这些网页，获取用户的id,name,href,commnet这四个属性,然后在用户的这些属性存入数据库，又添加了一些无聊的数据库的增删改查功能,接着从数据库取出所有的评论，一边取一边用正则清洗一些无用的评论，然后直接用列表存一下清洗后的评论（反正数据比较少），然后用jieba库来中文分词，最后用wordcloude库生成词云。ui可以自定义，我做得超丑（主要觉得没意思[摊手]）</p><a id="more"></a>
 <p>重要的是：python刚学，代码写得特别垃圾，代码写得特别垃圾，代码写得特别垃圾，内存列表都是随便开的。逃~。以后会重构的。</p>
 <p><img src="/2019/09/23/豆瓣小王子书评词云制作/littleprincewordcloud.png" alt="图片词云"></p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line">import os</span><br><span class="line">import pymysql as Db</span><br><span class="line">import jieba</span><br><span class="line">import re</span><br><span class="line">from wordcloud import WordCloud</span><br><span class="line">import matplotlib.pyplot as plt</span><br></pre></td></tr></table></figure>
@@ -462,7 +483,7 @@ main()
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">categories</span>
         </a>
       </div>
