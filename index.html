@@ -256,7 +256,24 @@
                 
               
 
-              <time title="Created: 2019-09-27 14:57:11" itemprop="dateCreated datePublished" datetime="2019-09-27T14:57:11+08:00">2019-09-27</time>
+              <time title="Created: 2019-09-27 14:57:11 / Modified: 15:04:18" itemprop="dateCreated datePublished" datetime="2019-09-27T14:57:11+08:00">2019-09-27</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言-python/" itemprop="url" rel="index"><span itemprop="name">编程语言| python</span></a></span>
+
+                
+                
+              
             </span>
           
 
@@ -271,7 +288,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
+          <p>题一：用字典创建一个平台的用户信息（包含用户名和密码）管理系统，新用户可以用与现有系统帐号不冲突的用户名创建帐号，已存在的老用户则可以用用户名和密码登陆重返系统。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">userdict = &#123;&apos;chendong&apos;: &apos;1234&apos;, &apos;chenjuan&apos;: &apos;5678&apos;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def newusers():</span><br><span class="line">    name = input(&apos;enter your name: &apos;)</span><br><span class="line">    if name in userdict.keys():</span><br><span class="line">        newusers()</span><br><span class="line">    else:</span><br><span class="line">        psw = input(&apos;enter your password: &apos;)</span><br><span class="line">        userdict[name] = psw</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def oldusers():</span><br><span class="line">    uinfo = input(&apos;enter your name and password: &apos;)</span><br><span class="line">    print(uinfo)</span><br><span class="line">    user=uinfo.split(&apos;,&apos;)</span><br><span class="line">    name,password=user</span><br><span class="line">    print(name,password)</span><br><span class="line">    if password in userdict.values():</span><br><span class="line">        print(name, &apos;welcome back &apos;)</span><br><span class="line">    else:</span><br><span class="line">        print(&apos;login incorrect&apos;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def login():</span><br><span class="line">    option = input(&apos;enter a option(N or O or E): &apos;)</span><br><span class="line">    if option == &apos;N&apos;:</span><br><span class="line">        newusers()</span><br><span class="line">    if option == &apos;O&apos;:</span><br><span class="line">        oldusers()</span><br><span class="line">    if option == &apos;E&apos;:</span><br><span class="line">        exit()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    login()</span><br><span class="line">    print(userdict)</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/09/27/第四周-字典练习题/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -833,7 +859,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">categories</span>
         </a>
       </div>
