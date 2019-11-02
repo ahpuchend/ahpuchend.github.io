@@ -6,7 +6,7 @@
 
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 3.9.0">
@@ -114,12 +114,12 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
-  <div class="container use-motion">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -234,7 +234,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ahpudong">
-      <meta itemprop="description" content="明月几时有">
+      <meta itemprop="description" content="昨夜西风凋碧树，独上高楼，望尽天涯路">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -309,14 +309,11 @@
         <p>这个是南京大学MOOC &lt;用python玩转数据&gt;的第三周python小项目作业题<br><a href="https://www.icourse163.org/course/NJU-1001571005?tid=1206020206" target="_blank" rel="noopener">用python玩转数据</a></p><h1 id="作业一："><a href="#作业一：" class="headerlink" title="作业一："></a>作业一：</h1><p>题目：爬取豆瓣的随便一本书的前50热评，并计算所用评分的平均值（注意：有的评论下无评分）</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">import requests,re,os,time</span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line">def crawler():</span><br><span class="line">    html = []</span><br><span class="line">    url=&quot;https://book.douban.com/subject/2567698/comments/hot?p=&quot;</span><br><span class="line">    for i in range(3):</span><br><span class="line">        re=requests.get(url+str(i+1))</span><br><span class="line">        html.append(re.text)</span><br><span class="line">        time.sleep(5)</span><br><span class="line">    html=&apos; &apos;.join(html)</span><br><span class="line">    return html</span><br><span class="line"></span><br><span class="line">def parse(html):</span><br><span class="line">    comments=[]</span><br><span class="line">    grades=[]</span><br><span class="line">    soup=BeautifulSoup(html,&apos;lxml&apos;)</span><br><span class="line">    commenttags=soup.select(&quot;.short&quot;)</span><br><span class="line">    for comment in commenttags:</span><br><span class="line">        comments.append(comment.string)</span><br><span class="line">    starttags=soup.select(&quot;.user-stars&quot;)</span><br><span class="line">    for start in starttags:</span><br><span class="line">        #提取评分</span><br><span class="line">        grade=int(&apos; &apos;.join(start[&apos;class&apos;]).split(&apos; &apos;)[1][7:])</span><br><span class="line">        grades.append(grade)</span><br><span class="line">    mean=sum(grades)/len(grades)</span><br><span class="line">    return comments,mean</span><br><span class="line"></span><br><span class="line">if __name__==&quot;__main__&quot;:</span><br><span class="line">    html=crawler()</span><br><span class="line">    allcomments,mean=parse(html)</span><br><span class="line">    print(mean)</span><br><span class="line">    for comment in allcomments:</span><br><span class="line">        print(comment)</span><br></pre></td></tr></table></figure><a id="more"></a>
 
 
-
 <h1 id="作业二："><a href="#作业二：" class="headerlink" title="作业二："></a>作业二：</h1><p>题目：在 “<a href="http://money.cnn.com/data/dow30/”" target="_blank" rel="noopener">http://money.cnn.com/data/dow30/”</a> 上抓取道指成分股数据并将30家公司的代码、公司名称和最近一次成交价放到一个列表中输出</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">import re</span><br><span class="line">def retrieve_dji_list():</span><br><span class="line">    r = requests.get(&apos;http://money.cnn.com/data/dow30/&apos;)</span><br><span class="line">    # put the re expression on one line and pay attention to the &apos;\n&apos;</span><br><span class="line">    search_pattern = re.compile(&apos;class=&quot;wsod_symbol&quot;&gt;(.*?)&lt;\/a&gt;.*?&lt;span.*?&quot;&gt;(.*?)&lt;\/span&gt;.*?\n.*?class=&quot;wsod_stream&quot;&gt;(.*?)&lt;\/span&gt;&apos;)</span><br><span class="line">    dji_list_in_text = re.findall(search_pattern, r.text)</span><br><span class="line">    return dji_list_in_text</span><br><span class="line">dji_list = retrieve_dji_list()</span><br><span class="line">print(dji_list)</span><br></pre></td></tr></table></figure>
-
 <p>Note:这个代码时老师给的参考答案</p>
 <h1 id="作业三"><a href="#作业三" class="headerlink" title="作业三:"></a>作业三:</h1><p>请爬取网页（ <a href="http://www.volleyball.world/en/vnl/2018/women/results-and-ranking/round1" target="_blank" rel="noopener">http://www.volleyball.world/en/vnl/2018/women/results-and-ranking/round1</a> ）上的数据（包括TEAMS and TOTAL, WON, LOST of MATCHES）</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import requests,re</span><br><span class="line">def crawler(url):</span><br><span class="line">    r=requests.get(url)</span><br><span class="line">    pattern=re.compile(&apos;href=&quot;/en/vnl/2018/women/teams/.*?&gt;(.*?)&lt;\/a&gt;\s*&lt;/figcaption&gt;\s*&lt;/figure&gt;\s*&lt;\/td&gt;\s*.*?(\d+)&lt;\/td&gt;\s*.*?(\d+)&lt;\/td&gt;\s*.*?(\d+)&lt;\/td&gt;&apos;)</span><br><span class="line">    lis=re.findall(pattern,r.text)</span><br><span class="line">    return lis</span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    url=&quot;http://www.volleyball.world/en/vnl/2018/women/results-and-ranking/round1&quot;</span><br><span class="line">    lis=crawler(url)</span><br><span class="line">    print(lis,len(lis))</span><br></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -421,14 +418,14 @@
       src="/images/avatar.gif"
       alt="ahpudong">
   <p class="site-author-name" itemprop="name">ahpudong</p>
-  <div class="site-description" itemprop="description">明月几时有</div>
+  <div class="site-description" itemprop="description">昨夜西风凋碧树，独上高楼，望尽天涯路</div>
 </div>
   <nav class="site-state motion-element">
       <div class="site-state-item site-state-posts">
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -441,7 +438,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">categories</span>
         </a>
       </div>
@@ -454,7 +451,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">tags</span>
         </a>
       </div>
@@ -635,6 +632,8 @@
 
   
 
+  
+
 <script>
   window.livereOptions = {
     refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
@@ -647,7 +646,24 @@
     j.async = true;
     e.parentNode.insertBefore(j, e);
   })(document, 'script');
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
 </script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 </body>
 </html>

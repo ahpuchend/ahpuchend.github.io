@@ -6,7 +6,7 @@
 
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 3.9.0">
@@ -56,16 +56,16 @@
   };
 </script>
 
-  <meta name="description" content="明月几时有">
+  <meta name="description" content="昨夜西风凋碧树，独上高楼，望尽天涯路">
 <meta property="og:type" content="website">
 <meta property="og:title" content="AIdreamer">
 <meta property="og:url" content="https://ahpuchend.github.io/index.html">
 <meta property="og:site_name" content="AIdreamer">
-<meta property="og:description" content="明月几时有">
+<meta property="og:description" content="昨夜西风凋碧树，独上高楼，望尽天涯路">
 <meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AIdreamer">
-<meta name="twitter:description" content="明月几时有">
+<meta name="twitter:description" content="昨夜西风凋碧树，独上高楼，望尽天涯路">
   <link rel="canonical" href="https://ahpuchend.github.io/">
 
 
@@ -112,12 +112,12 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
-  <div class="container use-motion">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -227,11 +227,11 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://ahpuchend.github.io/2019/10/15/pandas-入门/">
+    <link itemprop="mainEntityOfPage" href="https://ahpuchend.github.io/2019/10/26/pandas-常用操作/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ahpudong">
-      <meta itemprop="description" content="明月几时有">
+      <meta itemprop="description" content="昨夜西风凋碧树，独上高楼，望尽天涯路">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -241,7 +241,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2019/10/15/pandas-入门/" class="post-title-link" itemprop="url">pandas 入门</a>
+            <a href="/2019/10/26/pandas-常用操作/" class="post-title-link" itemprop="url">pandas 常用操作</a>
           
         </h1>
 
@@ -256,7 +256,7 @@
                 
               
 
-              <time title="Created: 2019-10-15 20:29:33 / Modified: 20:30:56" itemprop="dateCreated datePublished" datetime="2019-10-15T20:29:33+08:00">2019-10-15</time>
+              <time title="Created: 2019-10-26 21:38:18 / Modified: 22:01:44" itemprop="dateCreated datePublished" datetime="2019-10-26T21:38:18+08:00">2019-10-26</time>
             </span>
           
             
@@ -288,11 +288,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="第1章-Series"><a href="#第1章-Series" class="headerlink" title="第1章 Series()"></a>第1章 Series()</h1><h2 id="1-1Series的创建"><a href="#1-1Series的创建" class="headerlink" title="1.1Series的创建"></a>1.1Series的创建</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import pandas as pd</span><br><span class="line">##numpy</span><br><span class="line">a=np.arange(16)</span><br><span class="line">se=pd.Series(a,index=pd.date_range(&apos;20191012&apos;,periods=16))</span><br><span class="line">print(se)</span><br><span class="line">print(se[&apos;20191024&apos;])</span><br><span class="line">## python dict</span><br><span class="line">dic=&#123;&apos;name&apos;:&apos;chendong&apos;,&apos;age&apos;:22,&apos;gender&apos;:&apos;男&apos;&#125;</span><br><span class="line">se1=pd.Series(dic)</span><br><span class="line">print(se1)</span><br><span class="line">## python list</span><br><span class="line">lis=[&apos;hello&apos;,&apos;world&apos;,1,2,3]</span><br><span class="line">se2=pd.Series(lis)</span><br><span class="line">print(se2)</span><br><span class="line"># 标量值</span><br><span class="line">se3=pd.Series(3,name=&apos;hw&apos;)</span><br><span class="line">print(se3)</span><br></pre></td></tr></table></figure>
+          <h2 id="1-从txt-文件或者excel文件中读取数据"><a href="#1-从txt-文件或者excel文件中读取数据" class="headerlink" title="1. 从txt 文件或者excel文件中读取数据"></a>1. 从txt 文件或者excel文件中读取数据</h2><h2 id="2-把数据存入mysql数据库"><a href="#2-把数据存入mysql数据库" class="headerlink" title="2. 把数据存入mysql数据库"></a>2. 把数据存入mysql数据库</h2><h2 id="3-再已经建好的DataFrame中增加新列"><a href="#3-再已经建好的DataFrame中增加新列" class="headerlink" title="3. 再已经建好的DataFrame中增加新列"></a>3. 再已经建好的DataFrame中增加新列</h2><h2 id="4-修改原来的列名"><a href="#4-修改原来的列名" class="headerlink" title="4. 修改原来的列名"></a>4. 修改原来的列名</h2><h2 id="5-all-与-any"><a href="#5-all-与-any" class="headerlink" title="5. all() 与 any()"></a>5. all() 与 any()</h2><h2 id="6-Dataframe删除某些行后，对index重新按递增排序"><a href="#6-Dataframe删除某些行后，对index重新按递增排序" class="headerlink" title="6. Dataframe删除某些行后，对index重新按递增排序"></a>6. Dataframe删除某些行后，对index重新按递增排序</h2>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/10/15/pandas-入门/#more" rel="contents">
+              <a class="btn" href="/2019/10/26/pandas-常用操作/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -321,11 +321,11 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://ahpuchend.github.io/2019/10/15/第五周-python数据统计/">
+    <link itemprop="mainEntityOfPage" href="https://ahpuchend.github.io/2019/10/19/opencv入门/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ahpudong">
-      <meta itemprop="description" content="明月几时有">
+      <meta itemprop="description" content="昨夜西风凋碧树，独上高楼，望尽天涯路">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -335,7 +335,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2019/10/15/第五周-python数据统计/" class="post-title-link" itemprop="url">第五周-python数据统计</a>
+            <a href="/2019/10/19/opencv入门/" class="post-title-link" itemprop="url">opencv入门</a>
           
         </h1>
 
@@ -350,24 +350,7 @@
                 
               
 
-              <time title="Created: 2019-10-15 20:25:19 / Modified: 20:31:04" itemprop="dateCreated datePublished" datetime="2019-10-15T20:25:19+08:00">2019-10-15</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
-
-                
-                
-              
+              <time title="Created: 2019-10-19 16:27:29" itemprop="dateCreated datePublished" datetime="2019-10-19T16:27:29+08:00">2019-10-19</time>
             </span>
           
 
@@ -382,7 +365,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">import tushare as ts</span><br><span class="line">import pandas as pd</span><br><span class="line">import numpy as np</span><br><span class="line">sock=ts.get_hist_data(&apos;600036&apos;,start=&apos;2018-06-01&apos;,end=&apos;2018-12-31&apos;)</span><br><span class="line">sock1=pd.DataFrame(sock,columns=[&apos;open&apos;,&apos;high&apos;,&apos;close&apos;,&apos;low&apos;,&apos;volume&apos;])</span><br><span class="line">sock1=sock1.sort_values(&apos;date&apos;)</span><br><span class="line">print(sock1)</span><br><span class="line">print(&apos;输出这半年内成交量最低和最高那两天的日期和分别的成交量:&apos;)</span><br><span class="line">print(sock1.loc[sock1[&apos;volume&apos;]==sock1[&apos;volume&apos;].max()].loc[:,&apos;volume&apos;])</span><br><span class="line">print(sock1.loc[sock1[&apos;volume&apos;]==sock1[&apos;volume&apos;].min()].loc[:,&apos;volume&apos;])</span><br><span class="line"></span><br><span class="line">print(&apos;列出成交量在 1000000 以上的记录:&apos;)</span><br><span class="line">print(sock1.loc[sock1[&apos;volume&apos;]&gt;1000000])</span><br><span class="line"></span><br><span class="line">print(&apos;计算这半年中收盘价（close）高于开盘价（open）的天数:&apos;)</span><br><span class="line">print(sock1.loc[sock1[&apos;close&apos;]&gt;sock1[&apos;open&apos;]])</span><br><span class="line">print(&apos;天数：&apos;,sock1.loc[sock1[&apos;close&apos;]&gt;sock1[&apos;open&apos;]][&apos;open&apos;].count())</span><br><span class="line"></span><br><span class="line">print(&apos;&apos;&apos;计算前后两天开盘价的涨跌情况,用两种方式表示.</span><br><span class="line">第一种输出每两天之间的差值(后一天减去前一天),</span><br><span class="line">第二种输出一个开盘价涨跌列表,涨用 1 表示，跌用-1 表示。&apos;&apos;&apos;)</span><br><span class="line">openind=sock1[&apos;open&apos;].to_numpy()</span><br><span class="line">opendf1=pd.DataFrame(np.diff(openind))</span><br><span class="line">opendf2=pd.DataFrame(np.sign(np.diff(openind)))</span><br><span class="line">print(opendf1)</span><br><span class="line">print(opendf2)</span><br><span class="line"></span><br><span class="line">print(&apos; 计算每月收盘价的平均值: &apos;)</span><br><span class="line">print(sock1.index)</span><br><span class="line">months=[]</span><br><span class="line">print(sock1.index[0])</span><br><span class="line">for i in range(len(sock1.index)):</span><br><span class="line">    months.append(sock1.index[i].split(&apos;-&apos;)[1])</span><br><span class="line">print(len(months))</span><br><span class="line">print(months)</span><br><span class="line">print(&apos;----------------------------&apos;)</span><br><span class="line">sock1.index=months</span><br><span class="line"># print(sock1)</span><br><span class="line">print(sock1.groupby(sock1.index)[&apos;close&apos;].mean())</span><br><span class="line">#</span><br><span class="line">#&lt;参考答案&gt;</span><br><span class="line">print(&apos;==============================================================================&apos;)</span><br><span class="line"># import tushare as ts</span><br><span class="line"># import numpy as np</span><br><span class="line"># 1</span><br><span class="line">df = ts.get_hist_data(&apos;600036&apos;, start = &apos;2018-06-01&apos;, end = &apos;2018-12-31&apos;)</span><br><span class="line">df = df.iloc[:, :5] # 获取前 5 列</span><br><span class="line">df.sort_index(inplace = True) # 按 date 列进行排序</span><br><span class="line">print(df)</span><br><span class="line"># 2</span><br><span class="line">min_day = df.sort_values(&apos;volume&apos;).iloc[0,]</span><br><span class="line">min_volume = min_day.volume</span><br><span class="line">min_volume_date = min_day.name</span><br><span class="line">print(&quot;the min volume of &#123;&#125; is at &#123;&#125;&quot;.format(min_volume, min_volume_date))</span><br><span class="line">max_day = df.sort_values(&apos;volume&apos;).iloc[-1,]</span><br><span class="line">max_volume = max_day.volume</span><br><span class="line">max_volume_date = max_day.name</span><br><span class="line">print(&quot;the max volume of &#123;&#125; is at &#123;&#125;&quot;.format(max_volume, max_volume_date))</span><br><span class="line"># 3</span><br><span class="line">print(df[df.volume &gt;= 1000000])</span><br><span class="line"># 4</span><br><span class="line">print(len(df[df.close &gt; df.open]))</span><br><span class="line"># 5</span><br><span class="line">print(df.open.diff())</span><br><span class="line">print(np.sign(np.diff(df.open)))</span><br><span class="line"># 6</span><br><span class="line">month = [item[5:7] for item in df.index]</span><br><span class="line">print(df.close.groupby(month).apply(np.mean))</span><br></pre></td></tr></table></figure>
+          
         
       
     </div>
@@ -406,11 +389,11 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://ahpuchend.github.io/2019/09/27/第四周-字典练习题/">
+    <link itemprop="mainEntityOfPage" href="https://ahpuchend.github.io/2019/10/18/numpy入门/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ahpudong">
-      <meta itemprop="description" content="明月几时有">
+      <meta itemprop="description" content="昨夜西风凋碧树，独上高楼，望尽天涯路">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -420,7 +403,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2019/09/27/第四周-字典练习题/" class="post-title-link" itemprop="url">第四周-字典练习题</a>
+            <a href="/2019/10/18/numpy入门/" class="post-title-link" itemprop="url">numpy入门</a>
           
         </h1>
 
@@ -435,25 +418,12 @@
                 
               
 
-              <time title="Created: 2019-09-27 14:57:11 / Modified: 15:22:45" itemprop="dateCreated datePublished" datetime="2019-09-27T14:57:11+08:00">2019-09-27</time>
+              <time title="Created: 2019-10-18 21:03:38 / Modified: 21:04:03" itemprop="dateCreated datePublished" datetime="2019-10-18T21:03:38+08:00">2019-10-18</time>
             </span>
           
             
 
             
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -467,11 +437,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>题一：用字典创建一个平台的用户信息（包含用户名和密码）管理系统，新用户可以用与现有系统帐号不冲突的用户名创建帐号，已存在的老用户则可以用用户名和密码登陆重返系统。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">userdict = &#123;&apos;chendong&apos;: &apos;1234&apos;, &apos;chenjuan&apos;: &apos;5678&apos;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def newusers():</span><br><span class="line">    name = input(&apos;enter your name: &apos;)</span><br><span class="line">    if name in userdict.keys():</span><br><span class="line">        newusers()</span><br><span class="line">    else:</span><br><span class="line">        psw = input(&apos;enter your password: &apos;)</span><br><span class="line">        userdict[name] = psw</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def oldusers():</span><br><span class="line">    uinfo = input(&apos;enter your name and password: &apos;)</span><br><span class="line">    print(uinfo)</span><br><span class="line">    user=uinfo.split(&apos;,&apos;)</span><br><span class="line">    name,password=user</span><br><span class="line">    print(name,password)</span><br><span class="line">    if password in userdict.values():</span><br><span class="line">        print(name, &apos;welcome back &apos;)</span><br><span class="line">    else:</span><br><span class="line">        print(&apos;login incorrect&apos;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def login():</span><br><span class="line">    option = input(&apos;enter a option(N or O or E): &apos;)</span><br><span class="line">    if option == &apos;N&apos;:</span><br><span class="line">        newusers()</span><br><span class="line">    if option == &apos;O&apos;:</span><br><span class="line">        oldusers()</span><br><span class="line">    if option == &apos;E&apos;:</span><br><span class="line">        exit()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    login()</span><br><span class="line">    print(userdict)</span><br></pre></td></tr></table></figure>
+          <h1 id="1-建立n维数组"><a href="#1-建立n维数组" class="headerlink" title="1.建立n维数组"></a>1.建立n维数组</h1><h2 id="1-1-常用方法"><a href="#1-1-常用方法" class="headerlink" title="1.1 常用方法"></a>1.1 常用方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">np.random.random(())</span><br><span class="line">np.random.uniform()</span><br><span class="line">np.ones(())</span><br><span class="line">np.zeros(())</span><br><span class="line">np.arange().reshape()</span><br><span class="line">np.arange().resize()</span><br><span class="line">np.array([])</span><br><span class="line">np.empty()</span><br><span class="line">np.linspace()</span><br><span class="line">np.eys()</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/09/27/第四周-字典练习题/#more" rel="contents">
+              <a class="btn" href="/2019/10/18/numpy入门/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -500,11 +470,11 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://ahpuchend.github.io/2019/09/26/第三周-数据表示与获取基础编程作业/">
+    <link itemprop="mainEntityOfPage" href="https://ahpuchend.github.io/2019/10/18/线性回归案例/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ahpudong">
-      <meta itemprop="description" content="明月几时有">
+      <meta itemprop="description" content="昨夜西风凋碧树，独上高楼，望尽天涯路">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -514,7 +484,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2019/09/26/第三周-数据表示与获取基础编程作业/" class="post-title-link" itemprop="url">第三周-数据表示与获取基础编程作业</a>
+            <a href="/2019/10/18/线性回归案例/" class="post-title-link" itemprop="url">线性回归案例</a>
           
         </h1>
 
@@ -529,7 +499,75 @@
                 
               
 
-              <time title="Created: 2019-09-26 22:36:47" itemprop="dateCreated datePublished" datetime="2019-09-26T22:36:47+08:00">2019-09-26</time>
+              <time title="Created: 2019-10-18 21:02:47" itemprop="dateCreated datePublished" datetime="2019-10-18T21:02:47+08:00">2019-10-18</time>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://ahpuchend.github.io/2019/10/18/matplotlib入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ahpudong">
+      <meta itemprop="description" content="昨夜西风凋碧树，独上高楼，望尽天涯路">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AIdreamer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/10/18/matplotlib入门/" class="post-title-link" itemprop="url">matplotlib入门</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-10-18 20:56:11" itemprop="dateCreated datePublished" datetime="2019-10-18T20:56:11+08:00">2019-10-18</time>
             </span>
           
             
@@ -540,7 +578,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-09-27 15:22:30" itemprop="dateModified" datetime="2019-09-27T15:22:30+08:00">2019-09-27</time>
+                <time title="Modified: 2019-10-26 21:38:39" itemprop="dateModified" datetime="2019-10-26T21:38:39+08:00">2019-10-26</time>
               </span>
             
           
@@ -569,11 +607,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>MOOC链接  <a href="https://www.icourse163.org/course/NJU-1001571005?tid=1206020206" target="_blank" rel="noopener">用python玩转数据</a></p><p>题一:从键盘输入整数n（1-9之间），对于1-100之间的整数删除包含n并且能被n整除的数，<br>例如如果n为6，则要删掉包含6的如6，16这样的数及是6的倍数的如12和18这样的数，<br>输出所有满足条件的数，要求每满10个数换行。</p>
+          <h1 id="折线图"><a href="#折线图" class="headerlink" title="折线图"></a>折线图</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import numpy as np</span><br><span class="line">x=np.linspace(-5,5,100)</span><br><span class="line">y1=2*x+4</span><br><span class="line">y2=x**2</span><br><span class="line"></span><br><span class="line">plt.figure()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#加标题 plt.suptitle</span><br><span class="line">plt.suptitle(&apos;figure1&apos;)</span><br><span class="line"></span><br><span class="line">#设定x,y轴名称 plt.xlable,plt.ylabel</span><br><span class="line">plt.xlabel(&apos;x&apos;)</span><br><span class="line">plt.ylabel(&apos;y&apos;)</span><br><span class="line"></span><br><span class="line">#设定x,y轴的范围 plt.xlim,plt.ylim</span><br><span class="line"># plt.xlim((-5,5))</span><br><span class="line"># plt.ylim((-10,10))</span><br><span class="line"></span><br><span class="line">#设置坐标轴的单位距离和单元名称</span><br><span class="line"># plt.xticks(np.linspace(-5,5,11))</span><br><span class="line"># plt.yticks(np.linspace(-5,25,31))</span><br><span class="line"># plt.yticks([-10,-5,0,5,12],[r&apos;$very\ bad$&apos;,r&apos;$bad\ \alpha$&apos;,r&apos;$ok$&apos;,r&apos;$good$&apos;,r&apos;$very\ good$&apos;])</span><br><span class="line"></span><br><span class="line">#设置轴的位置</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">1.获得当前四边轴线（get current axis）plt.gca()</span><br><span class="line">2.去掉右边和上边的轴线 ax.spines[&apos;right and top&apos;].set_color(&apos;none&apos;)</span><br><span class="line">3.令x为下边轴线， ax.xaxis.set_ticks_positions(&apos;bottom&apos;)</span><br><span class="line">  令y为左边轴线， ax.yaxis.set_ticks_positions(&apos;left&apos;)</span><br><span class="line">4.设置原点坐标((0,0)为原点)</span><br><span class="line">ax.spines[&apos;bottom&apos;].set_position((&apos;data&apos;,0))</span><br><span class="line">ax.spines[&apos;left&apos;].set_position((&apos;data&apos;,0))</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">ax=plt.gca()</span><br><span class="line">ax.spines[&apos;right&apos;].set_color(&apos;none&apos;)</span><br><span class="line">ax.spines[&apos;top&apos;].set_color(&apos;none&apos;)</span><br><span class="line">ax.xaxis.set_ticks_position(&apos;bottom&apos;)</span><br><span class="line">ax.yaxis.set_ticks_position(&apos;left&apos;)</span><br><span class="line">ax.spines[&apos;bottom&apos;].set_position((&apos;data&apos;,0))</span><br><span class="line">ax.spines[&apos;left&apos;].set_position((&apos;data&apos;,0))</span><br><span class="line"># ax.derection</span><br><span class="line"># ax.spines[&apos;bottom&apos;].set_axisline_style(&quot;-|&gt;&quot;)</span><br><span class="line"># ax.spines[&apos;bottom&apos;].set_axisline_style(&quot;-|&gt;&quot;)</span><br><span class="line"></span><br><span class="line">#控制线条的颜色,宽度,和linestyle[solid,dotted,dashed,dashdot]</span><br><span class="line">l2,=plt.plot(x,y2)</span><br><span class="line">l1,=plt.plot(x,y1,linestyle=&apos;solid&apos;,linewidth=1.0,color=&apos;green&apos;,)</span><br><span class="line"></span><br><span class="line">#设置图例 plt.legend()</span><br><span class="line">#无参数 已在plt.plot(label=&apos;y1&apos;)中加入label参数</span><br><span class="line">plt.legend(handles=[l1,l2],labels=[&apos;y1&apos;,&apos;y2&apos;],loc=&apos;best&apos;)</span><br><span class="line"></span><br><span class="line">#加注解 annotation，比如给线的交点加注解</span><br><span class="line">#标出 y1=2*x+4 和 y2=x**2 的交点</span><br><span class="line">#利用零点定理找“近似”交点,(近似由于线条是由拟合的,真正的零点不一定生成了)</span><br><span class="line">idx = np.argwhere(np.diff(np.sign(y1-y2))).flatten()</span><br><span class="line">plt.plot(x[idx], y2[idx], &apos;ro&apos;,color=&apos;red&apos;)</span><br><span class="line"></span><br><span class="line">for i in range(len(idx)):</span><br><span class="line">    plt.plot([x[idx][i],x[idx][i]],[y2[idx][i],0],&apos;k--&apos;,lw=2.5)</span><br><span class="line"></span><br><span class="line">#加annotation</span><br><span class="line">plt.annotate(r&apos;(%s,%s)&apos;%(round(x[idx][1],1),round(y2[idx][1],1)),xy=(x[idx][1],y2[idx][1]),xycoords=&apos;data&apos;,</span><br><span class="line">             xytext=(+4,+3),fontsize=10,</span><br><span class="line">             arrowprops=dict(arrowstyle=&apos;-&gt;&apos;,connectionstyle=&apos;arc3,rad=0.2&apos;))</span><br><span class="line"></span><br><span class="line">#加一些说明</span><br><span class="line">plt.text(-4,5,r&apos;$this\ is\  some\  text\  \sigma_i\  \alpha$&apos;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#ticks能见度</span><br><span class="line">for label in ax.get_xticklabels()+ax.get_yticklabels():</span><br><span class="line">    label.set_fontsize(12)</span><br><span class="line">    label.set_bbox(dict(facecolor=&apos;pink&apos;,edgecolor=&apos;None&apos;,alpha=0.7))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/09/26/第三周-数据表示与获取基础编程作业/#more" rel="contents">
+              <a class="btn" href="/2019/10/18/matplotlib入门/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -602,11 +640,11 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://ahpuchend.github.io/2019/09/25/寻找众数/">
+    <link itemprop="mainEntityOfPage" href="https://ahpuchend.github.io/2019/10/16/距离和相似度度量方法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ahpudong">
-      <meta itemprop="description" content="明月几时有">
+      <meta itemprop="description" content="昨夜西风凋碧树，独上高楼，望尽天涯路">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -616,7 +654,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2019/09/25/寻找众数/" class="post-title-link" itemprop="url">寻找众数</a>
+            <a href="/2019/10/16/距离和相似度度量方法/" class="post-title-link" itemprop="url">距离和相似度度量方法</a>
           
         </h1>
 
@@ -631,7 +669,7 @@
                 
               
 
-              <time title="Created: 2019-09-25 21:23:08" itemprop="dateCreated datePublished" datetime="2019-09-25T21:23:08+08:00">2019-09-25</time>
+              <time title="Created: 2019-10-16 15:43:32" itemprop="dateCreated datePublished" datetime="2019-10-16T15:43:32+08:00">2019-10-16</time>
             </span>
           
             
@@ -642,7 +680,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-09-27 15:23:20" itemprop="dateModified" datetime="2019-09-27T15:23:20+08:00">2019-09-27</time>
+                <time title="Modified: 2019-10-17 11:17:07" itemprop="dateModified" datetime="2019-10-17T11:17:07+08:00">2019-10-17</time>
               </span>
             
           
@@ -658,11 +696,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>题目：给定一个序列，寻找序列中出现最多的数字，我们称这样的数字为该序列的“众数” 如[2,3,1,1,1]序列的众数为1</p><p><b> 法一：一般方法 时间 O(nlog(n)) 空间为不重复的数字数，建立一个二叉排序树，做统计。</b></p><p><b>法二：时空 O(n)方法:只适合在确定数字的范围时，且范围较小，可以开同样大的数组，遍历一边，一边遍历一边做统计</b></p>
+          <h1 id="欧式距离"><a href="#欧式距离" class="headerlink" title="欧式距离"></a>欧式距离</h1><h1 id="哈曼顿距离"><a href="#哈曼顿距离" class="headerlink" title="哈曼顿距离"></a>哈曼顿距离</h1><h1 id="夹角余弦"><a href="#夹角余弦" class="headerlink" title="夹角余弦"></a>夹角余弦</h1><h1 id="皮尔逊系数"><a href="#皮尔逊系数" class="headerlink" title="皮尔逊系数"></a>皮尔逊系数</h1><h1 id="信息熵"><a href="#信息熵" class="headerlink" title="信息熵"></a>信息熵</h1><h1 id="马氏距离"><a href="#马氏距离" class="headerlink" title="马氏距离"></a>马氏距离</h1><h1 id="切比雪夫距离"><a href="#切比雪夫距离" class="headerlink" title="切比雪夫距离"></a>切比雪夫距离</h1><h1 id="闵可夫斯基距离"><a href="#闵可夫斯基距离" class="headerlink" title="闵可夫斯基距离"></a>闵可夫斯基距离</h1><h1 id="汉明距离"><a href="#汉明距离" class="headerlink" title="汉明距离"></a>汉明距离</h1><h1 id="杰卡德相似系数与杰卡德距离"><a href="#杰卡德相似系数与杰卡德距离" class="headerlink" title="杰卡德相似系数与杰卡德距离"></a>杰卡德相似系数与杰卡德距离</h1><p>参考资料：<br><a href="https://cloud.tencent.com/developer/article/1049090" target="_blank" rel="noopener">https://cloud.tencent.com/developer/article/1049090</a></p><p><a href="https://www.zhihu.com/question/20852004" target="_blank" rel="noopener">https://www.zhihu.com/question/20852004</a></p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/09/25/寻找众数/#more" rel="contents">
+              <a class="btn" href="/2019/10/16/距离和相似度度量方法/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -691,11 +729,11 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://ahpuchend.github.io/2019/09/25/第三周-爬虫爬虫小项目作业/">
+    <link itemprop="mainEntityOfPage" href="https://ahpuchend.github.io/2019/10/16/回归算法实例/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ahpudong">
-      <meta itemprop="description" content="明月几时有">
+      <meta itemprop="description" content="昨夜西风凋碧树，独上高楼，望尽天涯路">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -705,7 +743,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2019/09/25/第三周-爬虫爬虫小项目作业/" class="post-title-link" itemprop="url">第三周-python爬虫小项目作业</a>
+            <a href="/2019/10/16/回归算法实例/" class="post-title-link" itemprop="url">回归算法实例</a>
           
         </h1>
 
@@ -720,7 +758,75 @@
                 
               
 
-              <time title="Created: 2019-09-25 20:37:26" itemprop="dateCreated datePublished" datetime="2019-09-25T20:37:26+08:00">2019-09-25</time>
+              <time title="Created: 2019-10-16 15:27:32" itemprop="dateCreated datePublished" datetime="2019-10-16T15:27:32+08:00">2019-10-16</time>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://ahpuchend.github.io/2019/10/16/算法课讨论习题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ahpudong">
+      <meta itemprop="description" content="昨夜西风凋碧树，独上高楼，望尽天涯路">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AIdreamer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/10/16/算法课讨论习题/" class="post-title-link" itemprop="url">算法课讨论习题</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-10-16 15:26:45" itemprop="dateCreated datePublished" datetime="2019-10-16T15:26:45+08:00">2019-10-16</time>
             </span>
           
             
@@ -731,22 +837,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-09-27 15:22:14" itemprop="dateModified" datetime="2019-09-27T15:22:14+08:00">2019-09-27</time>
+                <time title="Modified: 2019-10-18 21:01:23" itemprop="dateModified" datetime="2019-10-18T21:01:23+08:00">2019-10-18</time>
               </span>
             
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -760,16 +853,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>这个是南京大学MOOC &lt;用python玩转数据&gt;的第三周python小项目作业题<br><a href="https://www.icourse163.org/course/NJU-1001571005?tid=1206020206" target="_blank" rel="noopener">用python玩转数据</a></p><h1 id="作业一："><a href="#作业一：" class="headerlink" title="作业一："></a>作业一：</h1><p>题目：爬取豆瓣的随便一本书的前50热评，并计算所用评分的平均值（注意：有的评论下无评分）</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">import requests,re,os,time</span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line">def crawler():</span><br><span class="line">    html = []</span><br><span class="line">    url=&quot;https://book.douban.com/subject/2567698/comments/hot?p=&quot;</span><br><span class="line">    for i in range(3):</span><br><span class="line">        re=requests.get(url+str(i+1))</span><br><span class="line">        html.append(re.text)</span><br><span class="line">        time.sleep(5)</span><br><span class="line">    html=&apos; &apos;.join(html)</span><br><span class="line">    return html</span><br><span class="line"></span><br><span class="line">def parse(html):</span><br><span class="line">    comments=[]</span><br><span class="line">    grades=[]</span><br><span class="line">    soup=BeautifulSoup(html,&apos;lxml&apos;)</span><br><span class="line">    commenttags=soup.select(&quot;.short&quot;)</span><br><span class="line">    for comment in commenttags:</span><br><span class="line">        comments.append(comment.string)</span><br><span class="line">    starttags=soup.select(&quot;.user-stars&quot;)</span><br><span class="line">    for start in starttags:</span><br><span class="line">        #提取评分</span><br><span class="line">        grade=int(&apos; &apos;.join(start[&apos;class&apos;]).split(&apos; &apos;)[1][7:])</span><br><span class="line">        grades.append(grade)</span><br><span class="line">    mean=sum(grades)/len(grades)</span><br><span class="line">    return comments,mean</span><br><span class="line"></span><br><span class="line">if __name__==&quot;__main__&quot;:</span><br><span class="line">    html=crawler()</span><br><span class="line">    allcomments,mean=parse(html)</span><br><span class="line">    print(mean)</span><br><span class="line">    for comment in allcomments:</span><br><span class="line">        print(comment)</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/09/25/第三周-爬虫爬虫小项目作业/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
+          <h2 id="题一：合并排序"><a href="#题一：合并排序" class="headerlink" title="题一：合并排序"></a>题一：合并排序</h2><h2 id="题二：快速排序"><a href="#题二：快速排序" class="headerlink" title="题二：快速排序"></a>题二：快速排序</h2><h2 id="题三：素数判定问题"><a href="#题三：素数判定问题" class="headerlink" title="题三：素数判定问题"></a>题三：素数判定问题</h2><h2 id="题四：不无聊序列"><a href="#题四：不无聊序列" class="headerlink" title="题四：不无聊序列"></a>题四：不无聊序列</h2><h2 id="题五：二维平面的最近点对问题"><a href="#题五：二维平面的最近点对问题" class="headerlink" title="题五：二维平面的最近点对问题"></a>题五：二维平面的最近点对问题</h2><h2 id="题六：顺序统计量问题：第i小元素"><a href="#题六：顺序统计量问题：第i小元素" class="headerlink" title="题六：顺序统计量问题：第i小元素"></a>题六：顺序统计量问题：第i小元素</h2><h2 id="题七：整数划分"><a href="#题七：整数划分" class="headerlink" title="题七：整数划分"></a>题七：整数划分</h2><h2 id="题八：最大元和最小元"><a href="#题八：最大元和最小元" class="headerlink" title="题八：最大元和最小元"></a>题八：最大元和最小元</h2><h2 id="题九：整数划分"><a href="#题九：整数划分" class="headerlink" title="题九：整数划分"></a>题九：整数划分</h2><h2 id="题十：汉诺塔问题"><a href="#题十：汉诺塔问题" class="headerlink" title="题十：汉诺塔问题"></a>题十：汉诺塔问题</h2><h2 id="题十一：a的n次幂求法"><a href="#题十一：a的n次幂求法" class="headerlink" title="题十一：a的n次幂求法"></a>题十一：a的n次幂求法</h2>
         
       
     </div>
@@ -793,11 +877,11 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://ahpuchend.github.io/2019/09/24/introduction-to-technical-writing/">
+    <link itemprop="mainEntityOfPage" href="https://ahpuchend.github.io/2019/10/16/梯度下降算法概述/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ahpudong">
-      <meta itemprop="description" content="明月几时有">
+      <meta itemprop="description" content="昨夜西风凋碧树，独上高楼，望尽天涯路">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -807,7 +891,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2019/09/24/introduction-to-technical-writing/" class="post-title-link" itemprop="url">introduction to technical writing</a>
+            <a href="/2019/10/16/梯度下降算法概述/" class="post-title-link" itemprop="url">梯度下降算法概述</a>
           
         </h1>
 
@@ -822,24 +906,7 @@
                 
               
 
-              <time title="Created: 2019-09-24 19:48:49 / Modified: 21:07:47" itemprop="dateCreated datePublished" datetime="2019-09-24T19:48:49+08:00">2019-09-24</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/English/" itemprop="url" rel="index"><span itemprop="name">English</span></a></span>
-
-                
-                
-              
+              <time title="Created: 2019-10-16 15:25:26" itemprop="dateCreated datePublished" datetime="2019-10-16T15:25:26+08:00">2019-10-16</time>
             </span>
           
 
@@ -854,16 +921,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><b>Think about the many types of writing you do,for example,writing for school,to family and friends,or on your job?what kind of writing would you consider to be technical writing? How would you define technical writing? Hello!I‘m chen meihua from Southeast University.In this section,I will provide you with an overview of technical writing and will focus on its definetion,main featutes and purposes.</b></p>
-          <!--noindex-->
           
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/09/24/introduction-to-technical-writing/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
         
       
     </div>
@@ -887,11 +945,11 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://ahpuchend.github.io/2019/09/23/豆瓣小王子书评词云制作/">
+    <link itemprop="mainEntityOfPage" href="https://ahpuchend.github.io/2019/10/16/分类算法概述/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ahpudong">
-      <meta itemprop="description" content="明月几时有">
+      <meta itemprop="description" content="昨夜西风凋碧树，独上高楼，望尽天涯路">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -901,7 +959,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2019/09/23/豆瓣小王子书评词云制作/" class="post-title-link" itemprop="url">豆瓣小王子书评词云制作</a>
+            <a href="/2019/10/16/分类算法概述/" class="post-title-link" itemprop="url">分类算法概述</a>
           
         </h1>
 
@@ -916,7 +974,7 @@
                 
               
 
-              <time title="Created: 2019-09-23 21:03:46" itemprop="dateCreated datePublished" datetime="2019-09-23T21:03:46+08:00">2019-09-23</time>
+              <time title="Created: 2019-10-16 14:47:59" itemprop="dateCreated datePublished" datetime="2019-10-16T14:47:59+08:00">2019-10-16</time>
             </span>
           
             
@@ -927,7 +985,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-09-27 15:23:02" itemprop="dateModified" datetime="2019-09-27T15:23:02+08:00">2019-09-27</time>
+                <time title="Modified: 2019-10-18 20:59:37" itemprop="dateModified" datetime="2019-10-18T20:59:37+08:00">2019-10-18</time>
               </span>
             
           
@@ -937,7 +995,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ML/" itemprop="url" rel="index"><span itemprop="name">ML</span></a></span>
 
                 
                 
@@ -956,11 +1014,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>主要的想法就是先用request.get()方法获取一些url，得到url的html后再用beautifulsoup解析这些网页，获取用户的id,name,href,commnet这四个属性,然后在用户的这些属性存入数据库，又添加了一些无聊的数据库的增删改查功能,接着从数据库取出所有的评论，一边取一边用正则清洗一些无用的评论，然后直接用列表存一下清洗后的评论（反正数据比较少），然后用jieba库来中文分词，最后用wordcloude库生成词云。ui可以自定义，我做得超丑（主要觉得没意思[摊手]）<br>重要的是：python刚学，代码写得特别垃圾，代码写得特别垃圾，代码写得特别垃圾，内存列表都是随便开的。逃~。以后会重构的。</p>
+          <h1 id="第一章-KNN算法"><a href="#第一章-KNN算法" class="headerlink" title="第一章 KNN算法"></a>第一章 KNN算法</h1><h2 id="1-1-问题定义："><a href="#1-1-问题定义：" class="headerlink" title="1.1 问题定义："></a>1.1 问题定义：</h2><p>给定m个已被分为Cn类个样本[监督算法],对未标记类别的测试数据data求其所属类别？</p><h2 id="1-2-算法描述："><a href="#1-2-算法描述：" class="headerlink" title="1.2 算法描述："></a>1.2 算法描述：</h2><p>1）计算测试数据与各个训练数据之间的距离；</p><p>2）按照距离的递增关系进行排序；</p><p>3）选取距离最小的K个点；</p><p>4）确定前K个点所在类别的出现频率；</p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/09/23/豆瓣小王子书评词云制作/#more" rel="contents">
+              <a class="btn" href="/2019/10/16/分类算法概述/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -987,6 +1045,9 @@
   </div>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
 
 
           </div>
@@ -1026,14 +1087,14 @@
       src="/images/avatar.gif"
       alt="ahpudong">
   <p class="site-author-name" itemprop="name">ahpudong</p>
-  <div class="site-description" itemprop="description">明月几时有</div>
+  <div class="site-description" itemprop="description">昨夜西风凋碧树，独上高楼，望尽天涯路</div>
 </div>
   <nav class="site-state motion-element">
       <div class="site-state-item site-state-posts">
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1046,7 +1107,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">categories</span>
         </a>
       </div>
@@ -1059,7 +1120,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">tags</span>
         </a>
       </div>
@@ -1212,7 +1273,24 @@
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(bp, s);
     })();
-  </script>
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
 
@@ -1234,6 +1312,30 @@
 
 
 
+  
+
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
   
 
   

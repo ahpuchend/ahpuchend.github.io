@@ -6,7 +6,7 @@
 
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 3.9.0">
@@ -114,12 +114,12 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
-  <div class="container use-motion">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -234,7 +234,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ahpudong">
-      <meta itemprop="description" content="明月几时有">
+      <meta itemprop="description" content="昨夜西风凋碧树，独上高楼，望尽天涯路">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -298,16 +298,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>题一：用字典创建一个平台的用户信息（包含用户名和密码）管理系统，新用户可以用与现有系统帐号不冲突的用户名创建帐号，已存在的老用户则可以用用户名和密码登陆重返系统。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">userdict = &#123;&apos;chendong&apos;: &apos;1234&apos;, &apos;chenjuan&apos;: &apos;5678&apos;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def newusers():</span><br><span class="line">    name = input(&apos;enter your name: &apos;)</span><br><span class="line">    if name in userdict.keys():</span><br><span class="line">        newusers()</span><br><span class="line">    else:</span><br><span class="line">        psw = input(&apos;enter your password: &apos;)</span><br><span class="line">        userdict[name] = psw</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def oldusers():</span><br><span class="line">    uinfo = input(&apos;enter your name and password: &apos;)</span><br><span class="line">    print(uinfo)</span><br><span class="line">    user=uinfo.split(&apos;,&apos;)</span><br><span class="line">    name,password=user</span><br><span class="line">    print(name,password)</span><br><span class="line">    if password in userdict.values():</span><br><span class="line">        print(name, &apos;welcome back &apos;)</span><br><span class="line">    else:</span><br><span class="line">        print(&apos;login incorrect&apos;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def login():</span><br><span class="line">    option = input(&apos;enter a option(N or O or E): &apos;)</span><br><span class="line">    if option == &apos;N&apos;:</span><br><span class="line">        newusers()</span><br><span class="line">    if option == &apos;O&apos;:</span><br><span class="line">        oldusers()</span><br><span class="line">    if option == &apos;E&apos;:</span><br><span class="line">        exit()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    login()</span><br><span class="line">    print(userdict)</span><br></pre></td></tr></table></figure><a id="more"></a>
-
-
-<p>题二：统计词频：输入一个长句子，句子只含,|.|?|”|’这几种标点，统计每个单词出现的频率。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">import re</span><br><span class="line"></span><br><span class="line">with open(&apos;sentense.txt&apos;, &apos;r+&apos;) as f:</span><br><span class="line">    txt = f.read()</span><br><span class="line">    txt = txt.lower()</span><br><span class="line">pattern = re.compile(&quot;\,|\.|\&quot;|\&apos;|\!&quot;)</span><br><span class="line">sentense = re.sub(pattern, &apos; &apos;, txt)</span><br><span class="line"># print(sentense)</span><br><span class="line">words = sentense.split(&apos; &apos;)</span><br><span class="line">##清洗words,去掉&apos;&apos;,</span><br><span class="line">clswords = []</span><br><span class="line"># print(words)</span><br><span class="line">for word in words:</span><br><span class="line">    if word == &apos;&apos;:</span><br><span class="line">        continue</span><br><span class="line">    else:</span><br><span class="line">        clswords.append(word)</span><br><span class="line">setwords = set(clswords)</span><br><span class="line">listwords = list(setwords)</span><br><span class="line">wordfreq = [0] * len(listwords)</span><br><span class="line">for i in range(len(listwords)):</span><br><span class="line">    wordfreq[i] = clswords.count(listwords[i])</span><br><span class="line">worddiction = dict(zip(listwords, wordfreq))</span><br><span class="line">print(worddiction, len(worddiction))</span><br><span class="line">print(sum(worddiction.values()))</span><br></pre></td></tr></table></figure>
-
+        <p>题一：用字典创建一个平台的用户信息（包含用户名和密码）管理系统，新用户可以用与现有系统帐号不冲突的用户名创建帐号，已存在的老用户则可以用用户名和密码登陆重返系统。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">userdict = &#123;&apos;chendong&apos;: &apos;1234&apos;, &apos;chenjuan&apos;: &apos;5678&apos;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def newusers():</span><br><span class="line">    name = input(&apos;enter your name: &apos;)</span><br><span class="line">    if name in userdict.keys():</span><br><span class="line">        newusers()</span><br><span class="line">    else:</span><br><span class="line">        psw = input(&apos;enter your password: &apos;)</span><br><span class="line">        userdict[name] = psw</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def oldusers():</span><br><span class="line">    uinfo = input(&apos;enter your name and password: &apos;)</span><br><span class="line">    print(uinfo)</span><br><span class="line">    user=uinfo.split(&apos;,&apos;)</span><br><span class="line">    name,password=user</span><br><span class="line">    print(name,password)</span><br><span class="line">    if password in userdict.values():</span><br><span class="line">        print(name, &apos;welcome back &apos;)</span><br><span class="line">    else:</span><br><span class="line">        print(&apos;login incorrect&apos;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def login():</span><br><span class="line">    option = input(&apos;enter a option(N or O or E): &apos;)</span><br><span class="line">    if option == &apos;N&apos;:</span><br><span class="line">        newusers()</span><br><span class="line">    if option == &apos;O&apos;:</span><br><span class="line">        oldusers()</span><br><span class="line">    if option == &apos;E&apos;:</span><br><span class="line">        exit()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    login()</span><br><span class="line">    print(userdict)</span><br></pre></td></tr></table></figure></p><a id="more"></a>
+<p>题二：统计词频：输入一个长句子，句子只含,|.|?|”|’这几种标点，统计每个单词出现的频率。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">import re</span><br><span class="line"></span><br><span class="line">with open(&apos;sentense.txt&apos;, &apos;r+&apos;) as f:</span><br><span class="line">    txt = f.read()</span><br><span class="line">    txt = txt.lower()</span><br><span class="line">pattern = re.compile(&quot;\,|\.|\&quot;|\&apos;|\!&quot;)</span><br><span class="line">sentense = re.sub(pattern, &apos; &apos;, txt)</span><br><span class="line"># print(sentense)</span><br><span class="line">words = sentense.split(&apos; &apos;)</span><br><span class="line">##清洗words,去掉&apos;&apos;,</span><br><span class="line">clswords = []</span><br><span class="line"># print(words)</span><br><span class="line">for word in words:</span><br><span class="line">    if word == &apos;&apos;:</span><br><span class="line">        continue</span><br><span class="line">    else:</span><br><span class="line">        clswords.append(word)</span><br><span class="line">setwords = set(clswords)</span><br><span class="line">listwords = list(setwords)</span><br><span class="line">wordfreq = [0] * len(listwords)</span><br><span class="line">for i in range(len(listwords)):</span><br><span class="line">    wordfreq[i] = clswords.count(listwords[i])</span><br><span class="line">worddiction = dict(zip(listwords, wordfreq))</span><br><span class="line">print(worddiction, len(worddiction))</span><br><span class="line">print(sum(worddiction.values()))</span><br></pre></td></tr></table></figure></p>
 <p>sentence.txt:hi,boy. Don’t worry,have good night ! tomorrow must be a sunny day. “emmm….”,sounds like pretty. ok, I will go to bed. “see you tomorrow,have a good night”.a,a,a,a,a,a,a,a,a.</p>
 <p>题三：给定一个整数数组 nums 和一个目标值 target，<br>请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标<br>若存在，只要返回一组，且其中一个数字尽量小。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">def townum_sum(n,lst):</span><br><span class="line">    d=&#123;&#125;</span><br><span class="line">    for i in range(len(lst)):</span><br><span class="line">        d[lst[i]]=i</span><br><span class="line">    for i in range(len(lst)):</span><br><span class="line">        if n-lst[i] in d.keys():</span><br><span class="line">            return i,d[n-lst[i]]</span><br><span class="line">    return -1</span><br><span class="line"></span><br><span class="line">if __name__== &apos;__main__&apos;:</span><br><span class="line">    target=int(input(&apos;enter a num: &apos;))</span><br><span class="line">    nums=[1,4,5,6,7,8,9,10,11,12,13,15,18,19,20,21,29,34,54,65]</span><br><span class="line">    result=townum_sum(target,nums)</span><br><span class="line">    if result == -1:</span><br><span class="line">        print(&apos;not find&apos;)</span><br><span class="line">    else:</span><br><span class="line">        print(result)</span><br></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -410,14 +405,14 @@
       src="/images/avatar.gif"
       alt="ahpudong">
   <p class="site-author-name" itemprop="name">ahpudong</p>
-  <div class="site-description" itemprop="description">明月几时有</div>
+  <div class="site-description" itemprop="description">昨夜西风凋碧树，独上高楼，望尽天涯路</div>
 </div>
   <nav class="site-state motion-element">
       <div class="site-state-item site-state-posts">
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -430,7 +425,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">categories</span>
         </a>
       </div>
@@ -443,7 +438,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">tags</span>
         </a>
       </div>
@@ -624,6 +619,8 @@
 
   
 
+  
+
 <script>
   window.livereOptions = {
     refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
@@ -636,7 +633,24 @@
     j.async = true;
     e.parentNode.insertBefore(j, e);
   })(document, 'script');
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
 </script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 </body>
 </html>

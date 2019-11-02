@@ -6,7 +6,7 @@
 
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 3.9.0">
@@ -114,12 +114,12 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
-  <div class="container use-motion">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -234,7 +234,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ahpudong">
-      <meta itemprop="description" content="明月几时有">
+      <meta itemprop="description" content="昨夜西风凋碧树，独上高楼，望尽天涯路">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -309,13 +309,10 @@
         <p>MOOC链接  <a href="https://www.icourse163.org/course/NJU-1001571005?tid=1206020206" target="_blank" rel="noopener">用python玩转数据</a></p><p>题一:从键盘输入整数n（1-9之间），对于1-100之间的整数删除包含n并且能被n整除的数，<br>例如如果n为6，则要删掉包含6的如6，16这样的数及是6的倍数的如12和18这样的数，<br>输出所有满足条件的数，要求每满10个数换行。</p><a id="more"></a>
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">def Me():</span><br><span class="line">    num=int(input(&apos;enter a num (1-100):&apos;))</span><br><span class="line">    strnum=str(num)</span><br><span class="line">    j=1</span><br><span class="line">    for i in range(1,101):</span><br><span class="line">        if strnum in str(i):</span><br><span class="line">            continue</span><br><span class="line">        if i%num == 0:</span><br><span class="line">            continue</span><br><span class="line">        else:</span><br><span class="line">            if j%10==0:</span><br><span class="line">                print(i)</span><br><span class="line">                j=1</span><br><span class="line">            else:</span><br><span class="line">                print(i,end=&apos;,&apos;)</span><br><span class="line">                j+=1</span><br><span class="line"></span><br><span class="line">            # if j&lt;10:</span><br><span class="line">            #     print(i,end=&apos;,&apos;)</span><br><span class="line">            #     j+=1</span><br><span class="line">            # else:</span><br><span class="line">            #     print(i)</span><br><span class="line">            #     j=1</span><br><span class="line"></span><br><span class="line">#比Teach()多一个字符</span><br><span class="line"></span><br><span class="line">def Teach():</span><br><span class="line">    n = int(input(&quot;Enter the number: &quot;))</span><br><span class="line">    count = 0</span><br><span class="line">    new_str = &apos;&apos;</span><br><span class="line">    print(&quot;The result string: &quot;)</span><br><span class="line">    for i in range(101):</span><br><span class="line">        s = str(i)</span><br><span class="line">        if i % n != 0 and s.find(str(n)) == -1:</span><br><span class="line">            new_str = new_str + s + &apos;,&apos;</span><br><span class="line">            count += 1</span><br><span class="line">            if count % 10 == 0:</span><br><span class="line">                print(new_str[:-1])</span><br><span class="line">                new_str = &apos;&apos;</span><br><span class="line">    if len(new_str) &gt; 0:</span><br><span class="line">        print(new_str[:-1])</span><br></pre></td></tr></table></figure>
-
 <p>题二:请用随机函数产生500行1-100之间的随机整数存入文件random.txt中，<br>编程寻找这些整数的众数并输出，众数即为一组数中出现最多的数。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">import random,time</span><br><span class="line">def modeNum():</span><br><span class="line">    with open(&apos;random.txt&apos;,&apos;w+&apos;,encoding=&apos;utf-8&apos;) as f:</span><br><span class="line">        # num = []</span><br><span class="line">        for i in range(500):</span><br><span class="line">            num=random.randint(1,100)</span><br><span class="line">            f.write(str(num)+&apos;\n&apos;)</span><br><span class="line">        # f.seek(0)</span><br><span class="line">        # text=f.read()</span><br><span class="line">        # lists=text.split(&apos;\n&apos;)</span><br><span class="line">        # print(lists[:-1]) ##变成列表</span><br><span class="line">        f.seek(0)</span><br><span class="line">        nums=f.readlines()</span><br><span class="line">        nums=[int(num.strip()) for num in nums]</span><br><span class="line">        setNums=set(nums)</span><br><span class="line">        lst = [0] * 101</span><br><span class="line">        for num in setNums:</span><br><span class="line">            c = nums.count(num)</span><br><span class="line">            lst[int(num)] = c</span><br><span class="line"></span><br><span class="line">        # 法一找众数和出现次数</span><br><span class="line">        index = lst.index(max(lst))</span><br><span class="line">        print(index, max(lst))</span><br><span class="line"></span><br><span class="line">        #法二找众数和出现次数</span><br><span class="line">        # for i in range(len(lst)):</span><br><span class="line">        #     if lst[i] == max(lst):</span><br><span class="line">        #         print(i,max(lst))</span><br><span class="line"></span><br><span class="line">        # 法三找众数和出现次数</span><br><span class="line">        # lst1=[0]*101</span><br><span class="line">        # for i in nums:</span><br><span class="line">        #     lst1[int(i)]+=1</span><br><span class="line">        # index=lst1.index(max(lst1))</span><br><span class="line">        # print(index,max(lst1))</span><br><span class="line"></span><br><span class="line"># modeNum()</span><br></pre></td></tr></table></figure>
-
 <p>题三:文件article.txt中存放了一篇英文文章（请自行创建并添加测试文本），<br>假设文章中的标点符号仅包括“,”、“.”、“!”、“?”和“…”，<br>编程找出其中最长的单词并输出</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import re</span><br><span class="line">with open(&apos;article.txt&apos;,&apos;r+&apos;) as fp:</span><br><span class="line">    text=fp.readlines()</span><br><span class="line">    text=[str.strip() for str in text]</span><br><span class="line">    print(text)</span><br><span class="line">    list=&apos; &apos;.join(text)</span><br><span class="line">    print(list)</span><br><span class="line">    pattern=re.compile(&apos;\,|\.|\?|\!&apos;)</span><br><span class="line">    lists=re.sub(pattern,&apos; &apos;,list)</span><br><span class="line">    print(lists,type(lists))</span><br><span class="line">    words=lists.split(&apos; &apos;)</span><br><span class="line">    print(words)</span><br><span class="line">    maxlen=len(words[0])</span><br><span class="line">    for i,w in enumerate(words):</span><br><span class="line">        if len(w)&gt;maxlen:</span><br><span class="line">            maxlen=len(w)</span><br><span class="line">            index=i</span><br><span class="line">    print(index,words[index],maxlen)</span><br></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -418,14 +415,14 @@
       src="/images/avatar.gif"
       alt="ahpudong">
   <p class="site-author-name" itemprop="name">ahpudong</p>
-  <div class="site-description" itemprop="description">明月几时有</div>
+  <div class="site-description" itemprop="description">昨夜西风凋碧树，独上高楼，望尽天涯路</div>
 </div>
   <nav class="site-state motion-element">
       <div class="site-state-item site-state-posts">
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -438,7 +435,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">categories</span>
         </a>
       </div>
@@ -451,7 +448,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">tags</span>
         </a>
       </div>
@@ -632,6 +629,8 @@
 
   
 
+  
+
 <script>
   window.livereOptions = {
     refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
@@ -644,7 +643,24 @@
     j.async = true;
     e.parentNode.insertBefore(j, e);
   })(document, 'script');
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
 </script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 </body>
 </html>

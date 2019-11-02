@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+  <link rel="alternate" href="/atom.xml" title="AIdreamer" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="第一章 KNN算法1.1 问题定义：给定m个已被分为Cn类个样本[监督算法],对未标记类别的测试数据data求其所属类别？1.2 算法描述：1）计算测试数据与各个训练数据之间的距离；2）按照距离的递增关系进行排序；3）选取距离最小的K个点；4）确定前K个点所在类别的出现频率；">
+<meta name="keywords" content="classifier">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分类算法概述">
+<meta property="og:url" content="https://ahpuchend.github.io/2019/10/16/分类算法概述/index.html">
+<meta property="og:site_name" content="AIdreamer">
+<meta property="og:description" content="第一章 KNN算法1.1 问题定义：给定m个已被分为Cn类个样本[监督算法],对未标记类别的测试数据data求其所属类别？1.2 算法描述：1）计算测试数据与各个训练数据之间的距离；2）按照距离的递增关系进行排序；3）选取距离最小的K个点；4）确定前K个点所在类别的出现频率；">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://ahpuchend.github.io/2019/10/16/分类算法概述/k3.png">
+<meta property="og:image" content="https://ahpuchend.github.io/2019/10/16/分类算法概述/k5.png">
+<meta property="og:image" content="https://ahpuchend.github.io/2019/10/16/分类算法概述/k7.png">
+<meta property="og:image" content="https://ahpuchend.github.io/2019/10/16/分类算法概述/k9.png">
+<meta property="og:image" content="https://ahpuchend.github.io/2019/10/16/分类算法概述/precluster.png">
+<meta property="og:image" content="https://ahpuchend.github.io/2019/10/16/分类算法概述/corcluster.png">
+<meta property="og:image" content="https://ahpuchend.github.io/2019/10/16/分类算法概述/facluster.png">
+<meta property="og:updated_time" content="2019-10-18T12:59:37.622Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="分类算法概述">
+<meta name="twitter:description" content="第一章 KNN算法1.1 问题定义：给定m个已被分为Cn类个样本[监督算法],对未标记类别的测试数据data求其所属类别？1.2 算法描述：1）计算测试数据与各个训练数据之间的距离；2）按照距离的递增关系进行排序；3）选取距离最小的K个点；4）确定前K个点所在类别的出现频率；">
+<meta name="twitter:image" content="https://ahpuchend.github.io/2019/10/16/分类算法概述/k3.png">
+  <link rel="canonical" href="https://ahpuchend.github.io/2019/10/16/分类算法概述/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>分类算法概述 | AIdreamer</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AIdreamer</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="https://ahpuchend.github.io/2019/10/16/分类算法概述/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ahpudong">
+      <meta itemprop="description" content="昨夜西风凋碧树，独上高楼，望尽天涯路">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AIdreamer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">分类算法概述
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-10-16 14:47:59" itemprop="dateCreated datePublished" datetime="2019-10-16T14:47:59+08:00">2019-10-16</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-10-18 20:59:37" itemprop="dateModified" datetime="2019-10-18T20:59:37+08:00">2019-10-18</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ML/" itemprop="url" rel="index"><span itemprop="name">ML</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="第一章-KNN算法"><a href="#第一章-KNN算法" class="headerlink" title="第一章 KNN算法"></a>第一章 KNN算法</h1><h2 id="1-1-问题定义："><a href="#1-1-问题定义：" class="headerlink" title="1.1 问题定义："></a>1.1 问题定义：</h2><p>给定m个已被分为Cn类个样本[监督算法],对未标记类别的测试数据data求其所属类别？</p><h2 id="1-2-算法描述："><a href="#1-2-算法描述：" class="headerlink" title="1.2 算法描述："></a>1.2 算法描述：</h2><p>1）计算测试数据与各个训练数据之间的距离；</p><p>2）按照距离的递增关系进行排序；</p><p>3）选取距离最小的K个点；</p><p>4）确定前K个点所在类别的出现频率；</p><a id="more"></a>
+
+
+
+
+<p>5）返回前K个点中出现频率最高的类别作为测试数据的预测分类。</p>
+<p>由算法思想可得，影响KNN算法效果有：<br><b>距离和相似度度量方法的选择</b>在具体问题中，度量距离和相似度时，可能也需要特征归一化处理。</p>
+<p><b>自定义K值的大小</b>两个因素</p>
+<p>另一方面，KNN算法在执行过程中 对训练数据进行k邻近搜索，所以训练集的存储数据结构，对KNN算法的时间复杂度具有重大影响，故，我们在实际应用中需要给训练集一个便于搜索的数据结构。</p>
+<h2 id="1-3-基于KNN的手写数字识别"><a href="#1-3-基于KNN的手写数字识别" class="headerlink" title="1.3 基于KNN的手写数字识别"></a>1.3 基于KNN的手写数字识别</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line">#-*-coding:utf-8-*-</span><br><span class="line">from numpy import *</span><br><span class="line">import operator</span><br><span class="line">from os import listdir</span><br><span class="line"></span><br><span class="line">def classify0(inX, dataSet, labels, k):</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    KNN算法分类</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    dataSetSize = dataSet.shape[0]</span><br><span class="line">    diffMat = tile(inX, (dataSetSize,1)) - dataSet</span><br><span class="line"></span><br><span class="line">    # 求测试数据与每一个训练集样本的欧式距离</span><br><span class="line">    sqDiffMat = diffMat**2</span><br><span class="line">    sqDistances = sqDiffMat.sum(axis=1)</span><br><span class="line">    distances = sqDistances**0.5</span><br><span class="line"></span><br><span class="line">    #欧氏距离，从小到大的索引</span><br><span class="line">    sortedDistIndicies = distances.argsort()</span><br><span class="line"></span><br><span class="line">    classCount=&#123;&#125;</span><br><span class="line">    ## 统计K个统计量中存在的各个数字的个数</span><br><span class="line">    for i in range(k):</span><br><span class="line">        voteIlabel = labels[sortedDistIndicies[i]]</span><br><span class="line"></span><br><span class="line">        classCount[voteIlabel] = classCount.get(voteIlabel,0) + 1</span><br><span class="line"></span><br><span class="line">    sortedClassCount = sorted(classCount.items(), key=operator.itemgetter(1), reverse=True)</span><br><span class="line"></span><br><span class="line">    return sortedClassCount[0][0]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def img2vector(filename):</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    将一个txt文件转为1*1024个narray</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line"></span><br><span class="line">    returnVect = zeros((1,1024))</span><br><span class="line">    fr = open(filename) #打开每个存数字的txt文件</span><br><span class="line">    for i in range(32):</span><br><span class="line">        lineStr = fr.readline()  #readline()每次对txt文件读一行</span><br><span class="line">        for j in range(32):</span><br><span class="line">            returnVect[0,32*i+j] = int(lineStr[j])</span><br><span class="line">    return returnVect</span><br><span class="line"></span><br><span class="line">def handwritingClassTest():</span><br><span class="line"></span><br><span class="line">    hwLabels = []</span><br><span class="line">    trainingFileList = listdir(r&apos;C:\Users\chend\PycharmProjects\MNIST\trainingDigits&apos;)</span><br><span class="line">    print(trainingFileList )</span><br><span class="line"></span><br><span class="line">    m = len(trainingFileList)</span><br><span class="line">    print(m,&apos;张手写图片&apos;)</span><br><span class="line">    trainingMat = zeros((m,1024)) #m*1024大矩阵</span><br><span class="line"></span><br><span class="line">    for i in range(m):</span><br><span class="line">        fileNameStr = trainingFileList[i]  #trainingDigits文件夹下的每个txt文件名</span><br><span class="line">        fileStr = fileNameStr.split(&apos;.&apos;)[0]  #0_0...0_102/.....9_203</span><br><span class="line">        classNumStr = int(fileStr.split(&apos;_&apos;)[0])  #获取到每个文件对应的数字值</span><br><span class="line">        hwLabels.append(classNumStr)   #hwLabels列表中存放所有文本对应的数字</span><br><span class="line">        #trainingMat每一行（1024列）存放一个txt文件中的数字、</span><br><span class="line">        ##训练集中的数字全部读完，并存入m*1024的大矩阵中</span><br><span class="line">        trainingMat[i,:] = img2vector(r&apos;C:\Users\chend\PycharmProjects\MNIST\trainingDigits/%s&apos; % fileNameStr)</span><br><span class="line">    # print(trainingMat.shape)</span><br><span class="line">    # set_printoptions(threshold=inf)</span><br><span class="line">    # print(trainingMat)</span><br><span class="line"></span><br><span class="line">#读取测试集中的的所有txt文件</span><br><span class="line">    testFileList = listdir(r&apos;C:\Users\chend\PycharmProjects\MNIST\testDigits&apos;)</span><br><span class="line">    errorCount = 0.0  #错误率</span><br><span class="line">    mTest = len(testFileList)</span><br><span class="line">    print(mTest,&apos;张测试手写图片&apos;)</span><br><span class="line">    for i in range(mTest):</span><br><span class="line">        fileNameStr = testFileList[i]</span><br><span class="line">        fileStr = fileNameStr.split(&apos;.&apos;)[0]</span><br><span class="line">        classNumStr = int(fileStr.split(&apos;_&apos;)[0]) # 测试数据真实值</span><br><span class="line">        vectorUnderTest = img2vector(r&apos;C:\Users\chend\PycharmProjects\MNIST\testDigits/%s&apos; % fileNameStr)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        #对每个测试集中的txt文件分类</span><br><span class="line">        classifierResult = classify0(vectorUnderTest, trainingMat, hwLabels, 3)</span><br><span class="line"></span><br><span class="line">        print (&quot;the classifier came back with: %d, the real answer is: %d&quot; % (classifierResult, classNumStr))</span><br><span class="line"></span><br><span class="line">        if classifierResult != classNumStr:</span><br><span class="line">            print(&apos;这里识别错了&apos;)</span><br><span class="line">            errorCount += 1.0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    print(&quot;\n the total number of errors is: %d&quot; % errorCount)</span><br><span class="line">    print(&quot;\n the total error rate is: %f&quot; % (errorCount/float(mTest)))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__==&quot;__main__&quot;:</span><br><span class="line">    handwritingClassTest()</span><br></pre></td></tr></table></figure>
+<p>实验结果：<br>K=3时：</p>
+<p><img src="/2019/10/16/分类算法概述/k3.png" alt="k=3"></p>
+<p>K=5时：</p>
+<p><img src="/2019/10/16/分类算法概述/k5.png" alt="k=5"></p>
+<p>K=7时：</p>
+<p><img src="/2019/10/16/分类算法概述/k7.png" alt="k=7"></p>
+<p>K=9时：</p>
+<p><img src="/2019/10/16/分类算法概述/k9.png" alt="k=9"></p>
+<h2 id="1-4-参考资料："><a href="#1-4-参考资料：" class="headerlink" title="1.4 参考资料："></a>1.4 参考资料：</h2><p><a href="https://wizardforcel.gitbooks.io/dm-algo-top10/content/knn.html" target="_blank" rel="noopener">https://wizardforcel.gitbooks.io/dm-algo-top10/content/knn.html</a></p>
+<p><a href="https://www.cnblogs.com/ybjourney/p/4702562.html" target="_blank" rel="noopener">https://www.cnblogs.com/ybjourney/p/4702562.html</a></p>
+<p>李航 著 《统计学习方法》北京:清华大学出版社 2012</p>
+<p><a href="https://zhuanlan.zhihu.com/p/25994179" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/25994179</a></p>
+<h1 id="第二章-KMeans算法"><a href="#第二章-KMeans算法" class="headerlink" title="第二章 KMeans算法"></a>第二章 KMeans算法</h1><h2 id="2-1-算法描述："><a href="#2-1-算法描述：" class="headerlink" title="2.1 算法描述："></a>2.1 算法描述：</h2><p>1、用中心向量c1, c2, …, ck初始化k个聚类中心</p>
+<p>2、分组:<br>（1）将样本分配给距离其最近的中心向量</p>
+<p>（2）由这些样本构造不相交（ non-overlapping ）的聚类</p>
+<p>3、确定中心:<br>用各个聚类的中心向量作为新的中心</p>
+<p>4、重复分组和确定中心的步骤，直至算法收敛。<br><b>收敛的标志可以简单认为：连续两轮聚类结果相同。</b></p>
+<h2 id="2-2-算法评估："><a href="#2-2-算法评估：" class="headerlink" title="2.2 算法评估："></a>2.2 算法评估：</h2><ol>
+<li>算法收敛速度和初始化K个聚类中心相关；</li>
+<li>K值的选择影响聚类的效果；</li>
+<li>特别低，Kmeans只适合类的中心是可以被计算的才适用，（如：均值表示中心，当无法用数学符号表示时，Kmeans算法就无用武之地）</li>
+<li>Kmeans 对于“躁声”和孤立点数据是敏感的，少量的该类数据能够对平均值产生极大的影响。</li>
+</ol>
+<h2 id="2-3-KMeans例子"><a href="#2-3-KMeans例子" class="headerlink" title="2.3 KMeans例子"></a>2.3 KMeans例子</h2><p>给n个随机点分类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import pandas as pd</span><br><span class="line"></span><br><span class="line"># G1 = np.random.randn(300, 2) + 10</span><br><span class="line"># G2 = np.random.randn(300, 2)</span><br><span class="line"># G3 = np.random.randn(3000, 2) - 10</span><br><span class="line"># data = np.row_stack((G1, G2, G3))</span><br><span class="line">data=np.random.randint(1000,size=(1000,2))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#计算欧式距离</span><br><span class="line">def dist(source,dest):</span><br><span class="line">    #K表聚类数目</span><br><span class="line">    K=dest.shape[0]</span><br><span class="line"></span><br><span class="line">    # result存放每个样本到簇中心的欧式距离，result[i,j]表示第i个样本点与第j个簇中心点之间的欧氏距离</span><br><span class="line">    result = np.zeros((source.shape[0],K))</span><br><span class="line"></span><br><span class="line">    for i in range(K):</span><br><span class="line">        result[:,i] = np.sqrt(np.sum(np.square(source-dest[i]),axis=1))</span><br><span class="line"></span><br><span class="line">    return result</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 分组</span><br><span class="line">def group(distmat,K):</span><br><span class="line"></span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line"></span><br><span class="line">    :param distmat:</span><br><span class="line">    :param K:</span><br><span class="line">    :return: Series</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    distindex=np.argsort(distmat,axis=1)</span><br><span class="line"></span><br><span class="line">    # 找出所有数据离哪个簇中心的距离最短</span><br><span class="line">    mindist=distindex[:,0]</span><br><span class="line">    # print(&apos;找出所有数据离哪个簇中心的距离最短:&apos;)</span><br><span class="line">    # print(mindist)</span><br><span class="line"></span><br><span class="line">    clusters=pd.Series(np.arange(distmat.shape[0]),index=mindist)</span><br><span class="line"></span><br><span class="line">    # print(clusters)</span><br><span class="line"></span><br><span class="line">    return clusters</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def initCluster(data,K):</span><br><span class="line">    #随机选出K个簇中心点的下表</span><br><span class="line">    centClusterindexs = np.random.choice(data.shape[0] - 1, K,replace=False)</span><br><span class="line">    # print(&apos;选得簇中心点下标：&apos;,centClusterindexs)</span><br><span class="line">    # 选出的K个簇中心点</span><br><span class="line">    centCluster = data[centClusterindexs]</span><br><span class="line">    # print(&apos;选得簇邻近点坐标：&apos;)</span><br><span class="line">    # print(centCluster)</span><br><span class="line">    #所有样本到K个簇中心点的欧式距离,distmat=result</span><br><span class="line">    distmat = dist(data, centCluster)</span><br><span class="line">    # print(&apos;所有样本到K个簇中心点的欧式距离:&apos;)</span><br><span class="line">    # print(distmat)</span><br><span class="line">    # 得到距离后，进行分组（形参为：距离矩阵，聚类数目）</span><br><span class="line">    clustermat = group(distmat, K)</span><br><span class="line"></span><br><span class="line">    return clustermat</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def getcentCluster(preCluster,K):</span><br><span class="line"></span><br><span class="line">    centCluster=np.zeros((K,2))</span><br><span class="line"></span><br><span class="line">    cls=preCluster.groupby(by=preCluster.index)</span><br><span class="line">    for i in range(K):</span><br><span class="line">        centCluster[i]=np.sum(data[cls.get_group(i).values],axis=0)/len(cls.get_group(i))</span><br><span class="line">    #centCluster 为坐标矩阵</span><br><span class="line">    return centCluster</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def kmeansClassfier(input,K):</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    1. 随机选择k个簇中心点</span><br><span class="line">    2. 分组:通过欧式距离来分组</span><br><span class="line">    3. 重新计算簇中心</span><br><span class="line">    4. 重复步骤2,3 直到收敛（收敛的充分必要条件为:分组连续两次不再改变。必要条件为：聚类中心连续两次不在改变）</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    # 初始化，先分组</span><br><span class="line">    initmat=initCluster(data,K)</span><br><span class="line">    # print(len(initmat))</span><br><span class="line">    print(&apos;初始化分组的结果为：&apos;)</span><br><span class="line">    #Seriez 的 索引表示该样本所属的类别（0,1,2,...K类）,对应的表示样本的索引</span><br><span class="line">    print(initmat)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    changeCluster=True</span><br><span class="line">    clustermat = initmat.copy()</span><br><span class="line">    countCluster=1</span><br><span class="line">    while changeCluster:</span><br><span class="line">        preCluster = clustermat</span><br><span class="line">        # 重新计算聚类中心 坐标）</span><br><span class="line">        centCluster=getcentCluster(preCluster,K)</span><br><span class="line"></span><br><span class="line">        distmat=dist(data,centCluster)</span><br><span class="line"></span><br><span class="line">        clustermat= group(distmat,K)</span><br><span class="line"></span><br><span class="line">        countCluster+=1</span><br><span class="line"></span><br><span class="line">        # print(&apos;clustermat&apos;)</span><br><span class="line">        # print(type(clustermat))</span><br><span class="line">        # print(clustermat)</span><br><span class="line">        # print(&apos;preCluster&apos;)</span><br><span class="line">        # print(type(preCluster))</span><br><span class="line">        # print(preCluster)</span><br><span class="line"></span><br><span class="line">        # 这里有个大问题:我认为分组不再改变，便是收敛。其实是错误的。</span><br><span class="line">        if (clustermat.index  == preCluster.index ).all() and (clustermat.values  == preCluster.values ).all():</span><br><span class="line">            changeCluster=False</span><br><span class="line">        else:</span><br><span class="line">            changeCluster=True</span><br><span class="line"></span><br><span class="line">    print(&apos;聚类次数：&apos; ,countCluster)</span><br><span class="line">    print(countCluster)</span><br><span class="line">    # print(countCluster)</span><br><span class="line"></span><br><span class="line">    # 聚类后的结果显示（不同的聚类用不同的颜色表示）：</span><br><span class="line">    classes=clustermat.groupby(by=clustermat.index)</span><br><span class="line">    plt.figure()</span><br><span class="line">    for i in range (K):</span><br><span class="line">        plt.scatter(data[classes.get_group(i).values][:,0],data[classes.get_group(i).values][:,1],edgecolors=&apos;red&apos;)</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__==&quot;__main__&quot;:</span><br><span class="line"></span><br><span class="line">    ## plt.scatter 散点图</span><br><span class="line">    plt.figure(figsize=(8,8))</span><br><span class="line">    plt.scatter(data[:,0],data[:,1],label=&apos;scatter&apos;)</span><br><span class="line">    plt.legend(loc=&apos;best&apos;)</span><br><span class="line"></span><br><span class="line">    # plt.xlim((-15,15))</span><br><span class="line">    # plt.ylim((-15,15))</span><br><span class="line">    # plt.xlabel(&apos;x axis&apos;)</span><br><span class="line">    # plt.ylabel(&apos;y axis&apos;)</span><br><span class="line">    # plt.xticks(np.linspace(-15,15,31))</span><br><span class="line">    # plt.yticks(np.linspace(-15,15,31))</span><br><span class="line">    # ax=plt.gca()</span><br><span class="line">    # ax.spines[&apos;right&apos;].set_color(&apos;none&apos;)</span><br><span class="line">    # ax.spines[&apos;top&apos;].set_color(&apos;none&apos;)</span><br><span class="line">    # ax.xaxis.set_ticks_position(&apos;bottom&apos;)</span><br><span class="line">    # ax.yaxis.set_ticks_position(&apos;left&apos;)</span><br><span class="line">    # ax.spines[&apos;bottom&apos;].set_position((&apos;data&apos;,0))</span><br><span class="line">    # ax.spines[&apos;left&apos;].set_position((&apos;data&apos;,0))</span><br><span class="line">    #显示聚类前的图</span><br><span class="line">    plt.show()</span><br><span class="line">    # print(data)</span><br><span class="line">    # print(data.shape)</span><br><span class="line">    #</span><br><span class="line">    K=3</span><br><span class="line">    kmeansClassfier(data,K)</span><br></pre></td></tr></table></figure>
+<p>实验结果分析：<br>聚类前数据分布：<br><img src="/2019/10/16/分类算法概述/precluster.png" alt="聚类前数据分布"></p>
+<p>正确的聚类结果：<br><img src="/2019/10/16/分类算法概述/corcluster.png" alt="正确的聚类结果"></p>
+<p>通过做实验我们发现 当我们的样本 实际上 聚类结果是 显然的，如我们产生如下数据集：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">G1 = np.random.randn(300, 2) + 10</span><br><span class="line">G2 = np.random.randn(300, 2)</span><br><span class="line">G3 = np.random.randn(3000, 2) - 10</span><br><span class="line">data = np.row_stack((G1, G2, G3))</span><br></pre></td></tr></table></figure></p>
+<p>显然 G1 G2 G3 各为一类，但是当我初始化簇中心都选在G1上,这样就会导致 G1被分为两类，G2 G3 被划分到一类。 这显然错误了。所以我们需要一个好的选择初始簇中心的方法。所以产生如下错误聚类结果：</p>
+<p>不理想（错误）的聚类结果:<br><img src="/2019/10/16/分类算法概述/facluster.png" alt="不理想（错误）的结果"></p>
+<h2 id="Kmeans的评价指标："><a href="#Kmeans的评价指标：" class="headerlink" title="Kmeans的评价指标："></a>Kmeans的评价指标：</h2><script type="math/tex; mode=display">\sum_{1}^{k}\sum_{P\varepsilon X_{i}}||{X_{i}-P}||_{2}</script><p>其中<script type="math/tex">C_{i}</script>表示簇中心点</p>
+<p>由上述可知，初始化随机选择的簇中心点对我们的算法影响效果巨大，所以我们加入Kmeans的评价指标，经过多轮迭代，找出最好的一组聚类结果。参考代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import pandas as pd</span><br><span class="line"></span><br><span class="line"># G1 = np.random.randn(300, 2) + 10</span><br><span class="line"># G2 = np.random.randn(300, 2)</span><br><span class="line"># G3 = np.random.randn(300, 2) - 10</span><br><span class="line"># G4 = np.random.randn(300,2)-np.array([10,-10])</span><br><span class="line"># data = np.row_stack((G1, G2, G3))</span><br><span class="line">data=np.random.randint(1000,size=(1000,2))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#计算欧式距离</span><br><span class="line">def dist(source,dest):</span><br><span class="line">    #K表聚类数目</span><br><span class="line">    K=dest.shape[0]</span><br><span class="line"></span><br><span class="line">    # result存放每个样本到簇中心的欧式距离，result[i,j]表示第i个样本点与第j个簇中心点之间的欧氏距离</span><br><span class="line">    result = np.zeros((source.shape[0],K))</span><br><span class="line"></span><br><span class="line">    for i in range(K):</span><br><span class="line">        result[:,i] = np.sqrt(np.sum(np.square(source-dest[i]),axis=1))</span><br><span class="line"></span><br><span class="line">    return result</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 分组</span><br><span class="line">def group(distmat,K):</span><br><span class="line">    distindex=np.argsort(distmat,axis=1)</span><br><span class="line">    # 找出所有数据离哪个簇中心的距离最短</span><br><span class="line">    mindist=distindex[:,0]</span><br><span class="line">    # print(&apos;找出所有数据离哪个簇中心的距离最短:&apos;)</span><br><span class="line">    # print(mindist)</span><br><span class="line">    clusters=pd.Series(np.arange(distmat.shape[0]),index=mindist)</span><br><span class="line">    # print(clusters)</span><br><span class="line">    return clusters</span><br><span class="line"></span><br><span class="line">def initCluster(data,K):</span><br><span class="line">    #随机选出K个簇中心点的下表</span><br><span class="line">    centClusterindexs = np.random.choice(data.shape[0] - 1, K,replace=False)</span><br><span class="line">    # print(&apos;选得簇中心点下标：&apos;,centClusterindexs)</span><br><span class="line">    # 选出的K个簇中心点</span><br><span class="line">    centCluster = data[centClusterindexs]</span><br><span class="line">    # print(&apos;选得簇邻近点坐标：&apos;)</span><br><span class="line">    # print(centCluster)</span><br><span class="line">    #所有样本到K个簇中心点的欧式距离,distmat=result</span><br><span class="line">    distmat = dist(data, centCluster)</span><br><span class="line">    # print(&apos;所有样本到K个簇中心点的欧式距离:&apos;)</span><br><span class="line">    # print(distmat)</span><br><span class="line">    # 得到距离后，进行分组（形参为：距离矩阵，聚类数目）</span><br><span class="line">    clustermat = group(distmat, K)</span><br><span class="line">    return clustermat</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def getcentCluster(preCluster,K):</span><br><span class="line"></span><br><span class="line">    centCluster=np.zeros((K,2))</span><br><span class="line">    cls=preCluster.groupby(by=preCluster.index)</span><br><span class="line">    for i in range(K):</span><br><span class="line">        centCluster[i]=np.sum(data[cls.get_group(i).values],axis=0)/len(cls.get_group(i))</span><br><span class="line">    #centCluster 为坐标矩阵</span><br><span class="line">    return centCluster</span><br><span class="line"></span><br><span class="line">def kmeansClassfier(input,K):</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line">    1. 随机选择k个簇中心点</span><br><span class="line">    2. 分组:通过欧式距离来分组</span><br><span class="line">    3. 重新计算簇中心</span><br><span class="line">    4. 重复步骤2,3 直到收敛</span><br><span class="line">    &apos;&apos;&apos;</span><br><span class="line"></span><br><span class="line">    # 初始化，先分组</span><br><span class="line">    initmat=initCluster(data,K)</span><br><span class="line">    changeCluster=True</span><br><span class="line">    clustermat = initmat.copy()</span><br><span class="line">    countCluster=1</span><br><span class="line">    while changeCluster:</span><br><span class="line">        preCluster = clustermat</span><br><span class="line">        # 重新计算聚类中心 坐标）</span><br><span class="line">        centCluster = getcentCluster(preCluster,K)</span><br><span class="line"></span><br><span class="line">        distmat = dist(data,centCluster)</span><br><span class="line"></span><br><span class="line">        clustermat = group(distmat,K)</span><br><span class="line"></span><br><span class="line">        countCluster+=1</span><br><span class="line"></span><br><span class="line">        ### 算法核心,收敛判断 :连续两次分组不在改变</span><br><span class="line"></span><br><span class="line">        if (clustermat.index  == preCluster.index ).all() and (clustermat.values  == preCluster.values ).all():</span><br><span class="line">            # lossKmeans()</span><br><span class="line">            changeCluster=False</span><br><span class="line"></span><br><span class="line">        else:</span><br><span class="line">            changeCluster=True</span><br><span class="line"></span><br><span class="line">    # # 聚类后的结果显示（不同的聚类用不同的颜色表示）：</span><br><span class="line">    # classes=clustermat.groupby(by=clustermat.index)</span><br><span class="line">    # plt.figure()</span><br><span class="line">    # for i in range (K):</span><br><span class="line">    #     plt.scatter(data[classes.get_group(i).values][:,0],data[classes.get_group(i).values][:,1])</span><br><span class="line">    # plt.show()</span><br><span class="line">    return clustermat,centCluster</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def lossKmeans(clustermat,centCluster):</span><br><span class="line">    #计算各个簇内的所有欧拉距离,我们希望簇内欧拉距离尽可能小</span><br><span class="line">    K=centCluster.shape[0]</span><br><span class="line">    grops=clustermat.groupby(by=clustermat.index)</span><br><span class="line">    sumloss=0</span><br><span class="line">    for i in range(K):</span><br><span class="line">        sumloss+=np.sum(np.square(np.sum(np.square(data[grops.get_group(i).values]-centCluster[i]),axis=1)),axis=0)</span><br><span class="line">    return sumloss</span><br><span class="line"></span><br><span class="line">    #还可以计算不同簇内的相关度，我们希望不同的簇相关度尽可能低</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__==&quot;__main__&quot;:</span><br><span class="line"></span><br><span class="line">    ## plt.scatter 散点图</span><br><span class="line">    plt.figure(figsize=(8,8))</span><br><span class="line">    plt.scatter(data[:,0],data[:,1],label=&apos;scatter&apos;)</span><br><span class="line">    plt.legend(loc=&apos;best&apos;)</span><br><span class="line"></span><br><span class="line">    #显示聚类前的图</span><br><span class="line">    plt.show()</span><br><span class="line">    K=3</span><br><span class="line">    lossrecord=[]</span><br><span class="line">    #改进：进行n轮迭代（这里我们设为100轮）,找出其中评价最好的一轮作为最终结果</span><br><span class="line">    for i in range(100):</span><br><span class="line"></span><br><span class="line">        clusterResult=kmeansClassfier(data,K)</span><br><span class="line">        clustermat,centCluster=clusterResult</span><br><span class="line">        loss=lossKmeans(clustermat,centCluster)</span><br><span class="line">        lossrecord.append([loss,clustermat,centCluster])</span><br><span class="line">    minloss=lossrecord[0][0]</span><br><span class="line">    index=0</span><br><span class="line">    for i in range(1,len(lossrecord)):</span><br><span class="line">        print(lossrecord[i][0])</span><br><span class="line">        if(lossrecord[i][0]&lt;minloss):</span><br><span class="line">            minloss=lossrecord[i][0]</span><br><span class="line">            index=i</span><br><span class="line"></span><br><span class="line">    print(&apos;loss最小值为：&apos;, index)</span><br><span class="line">    clustermat=lossrecord[index][1]</span><br><span class="line">    classes = clustermat.groupby(by=clustermat.index)</span><br><span class="line">    plt.figure(figsize=(8,8))</span><br><span class="line">    for i in range(K):</span><br><span class="line">        plt.scatter(data[classes.get_group(i).values][:, 0], data[classes.get_group(i).values][:, 1])</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure></p>
+<p>经过改进，我们的粗糙的算法实验效果基本达标。不会出现上述的错误聚类情况了。</p>
+<p>参考资料：<br><a href="https://wizardforcel.gitbooks.io/dm-algo-top10/content/k-means.html" target="_blank" rel="noopener">https://wizardforcel.gitbooks.io/dm-algo-top10/content/k-means.html</a></p>
+<p><a href="https://blog.csdn.net/u013719780/article/details/51755124" target="_blank" rel="noopener">https://blog.csdn.net/u013719780/article/details/51755124</a></p>
+<h1 id="第三章-SVM算法"><a href="#第三章-SVM算法" class="headerlink" title="第三章 SVM算法"></a>第三章 SVM算法</h1><h1 id="第四章-C4-5分类树"><a href="#第四章-C4-5分类树" class="headerlink" title="第四章 C4.5分类树"></a>第四章 C4.5分类树</h1><h1 id="第五章-基于浅层神经网络的分类器"><a href="#第五章-基于浅层神经网络的分类器" class="headerlink" title="第五章 基于浅层神经网络的分类器"></a>第五章 基于浅层神经网络的分类器</h1><h1 id="第六章-贝叶斯分类器"><a href="#第六章-贝叶斯分类器" class="headerlink" title="第六章 贝叶斯分类器"></a>第六章 贝叶斯分类器</h1>
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/classifier/" rel="tag"># classifier</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/10/15/pandas-入门/" rel="next" title="pandas 入门">
+                  <i class="fa fa-chevron-left"></i> pandas 入门
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/10/16/梯度下降算法概述/" rel="prev" title="梯度下降算法概述">
+                  梯度下降算法概述 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    
+  <div class="comments" id="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80NjY5My8yMzIwMw=="></div>
+  </div>
+  
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第一章-KNN算法"><span class="nav-number">1.</span> <span class="nav-text">第一章 KNN算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-问题定义："><span class="nav-number">1.1.</span> <span class="nav-text">1.1 问题定义：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-算法描述："><span class="nav-number">1.2.</span> <span class="nav-text">1.2 算法描述：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-基于KNN的手写数字识别"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 基于KNN的手写数字识别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-参考资料："><span class="nav-number">1.4.</span> <span class="nav-text">1.4 参考资料：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第二章-KMeans算法"><span class="nav-number">2.</span> <span class="nav-text">第二章 KMeans算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-算法描述："><span class="nav-number">2.1.</span> <span class="nav-text">2.1 算法描述：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-算法评估："><span class="nav-number">2.2.</span> <span class="nav-text">2.2 算法评估：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-KMeans例子"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 KMeans例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kmeans的评价指标："><span class="nav-number">2.4.</span> <span class="nav-text">Kmeans的评价指标：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第三章-SVM算法"><span class="nav-number">3.</span> <span class="nav-text">第三章 SVM算法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第四章-C4-5分类树"><span class="nav-number">4.</span> <span class="nav-text">第四章 C4.5分类树</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第五章-基于浅层神经网络的分类器"><span class="nav-number">5.</span> <span class="nav-text">第五章 基于浅层神经网络的分类器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第六章-贝叶斯分类器"><span class="nav-number">6.</span> <span class="nav-text">第六章 贝叶斯分类器</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/images/avatar.gif"
+      alt="ahpudong">
+  <p class="site-author-name" itemprop="name">ahpudong</p>
+  <div class="site-description" itemprop="description">昨夜西风凋碧树，独上高楼，望尽天涯路</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">categories</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">tags</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+      
+        
+      
+        <a href="https://github.com/ahpuchend" title="GitHub &rarr; https://github.com/ahpuchend" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+      
+        
+      
+        <a href="mailto:2570808391@qq.com" title="E-Mail &rarr; mailto:2570808391@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+      
+        
+      
+        <a href="https://www.weibo.com/p/1005055695961132/home?from=page_100505&mod=TAB&is_all=1#place" title="Weibo &rarr; https://www.weibo.com/p/1005055695961132/home?from=page_100505&mod=TAB&is_all=1#place" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+      
+        
+      
+        <a href="https://twitter.com/AhpuDong" title="Twitter &rarr; https://twitter.com/AhpuDong" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i></a>
+      </span>
+    
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://colinxu.cn/" title="https://colinxu.cn/" rel="noopener" target="_blank">colinxu</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="http://twilight0319.top/" title="http://twilight0319.top/" rel="noopener" target="_blank">汪特派员</a>
+        </li>
+      
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ahpudong</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.4.0</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/pisces.js?v=7.4.0"></script>
+
+<script src="/js/next-boot.js?v=7.4.0"></script>
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+<script>
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+</body>
+</html>
