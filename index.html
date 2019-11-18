@@ -227,6 +227,168 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://ahpuchend.github.io/2019/11/18/算法分析之递归和分治/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ahpudong">
+      <meta itemprop="description" content="昨夜西风凋碧树，独上高楼，望尽天涯路">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AIdreamer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/11/18/算法分析之递归和分治/" class="post-title-link" itemprop="url">算法分析之递归和分治</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-11-18 22:22:51 / Modified: 22:29:41" itemprop="dateCreated datePublished" datetime="2019-11-18T22:22:51+08:00">2019-11-18</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="算法分析期末复习题"><a href="#算法分析期末复习题" class="headerlink" title="算法分析期末复习题"></a>算法分析期末复习题</h1><h2 id="1-插入排序"><a href="#1-插入排序" class="headerlink" title="1. 插入排序"></a>1. 插入排序</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">void InsertSort(vector &lt;int&gt; T, int len) &#123;</span><br><span class="line">	for (int i = 1; i &lt; len; ++i) &#123;</span><br><span class="line">		int key = T[i];</span><br><span class="line">		int j = i - 1;</span><br><span class="line">		while (j &gt;= 0 &amp;&amp; T[j] &gt; key ) &#123;</span><br><span class="line">			T[j + 1] = T[j];</span><br><span class="line">			j = j - 1;</span><br><span class="line">		&#125;</span><br><span class="line">		T[j+1] = key;</span><br><span class="line">	&#125;</span><br><span class="line">	for (int i = 0; i &lt; T.size(); ++i)</span><br><span class="line">		cout &lt;&lt; T[i] &lt;&lt; &quot;,&quot;;</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line">int main(void) &#123;</span><br><span class="line">	vector &lt;int&gt; v = &#123;10,3,4,5,6,8,9,7,2,1,100,300,200&#125;;</span><br><span class="line">	cout &lt;&lt; v.size() &lt;&lt; endl;</span><br><span class="line">	InsertSort(v, v.size());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/11/18/算法分析之递归和分治/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://ahpuchend.github.io/2019/11/18/大数加法和乘法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ahpudong">
+      <meta itemprop="description" content="昨夜西风凋碧树，独上高楼，望尽天涯路">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AIdreamer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/11/18/大数加法和乘法/" class="post-title-link" itemprop="url">Untitled</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-11-18 01:23:15" itemprop="dateCreated datePublished" datetime="2019-11-18T01:23:15+08:00">2019-11-18</time>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="大整数加法和大整数乘法"><a href="#大整数加法和大整数乘法" class="headerlink" title="大整数加法和大整数乘法"></a>大整数加法和大整数乘法</h1>
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="https://ahpuchend.github.io/2019/10/26/pandas-常用操作/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -256,11 +418,19 @@
                 
               
 
-              <time title="Created: 2019-10-26 21:38:18 / Modified: 22:01:44" itemprop="dateCreated datePublished" datetime="2019-10-26T21:38:18+08:00">2019-10-26</time>
+              <time title="Created: 2019-10-26 21:38:18" itemprop="dateCreated datePublished" datetime="2019-10-26T21:38:18+08:00">2019-10-26</time>
             </span>
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-11-16 19:53:32" itemprop="dateModified" datetime="2019-11-16T19:53:32+08:00">2019-11-16</time>
+              </span>
             
           
             <span class="post-meta-item">
@@ -837,7 +1007,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-18 21:01:23" itemprop="dateModified" datetime="2019-10-18T21:01:23+08:00">2019-10-18</time>
+                <time title="Modified: 2019-11-18 22:24:27" itemprop="dateModified" datetime="2019-11-18T22:24:27+08:00">2019-11-18</time>
               </span>
             
           
@@ -853,177 +1023,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="题一：合并排序"><a href="#题一：合并排序" class="headerlink" title="题一：合并排序"></a>题一：合并排序</h2><h2 id="题二：快速排序"><a href="#题二：快速排序" class="headerlink" title="题二：快速排序"></a>题二：快速排序</h2><h2 id="题三：素数判定问题"><a href="#题三：素数判定问题" class="headerlink" title="题三：素数判定问题"></a>题三：素数判定问题</h2><h2 id="题四：不无聊序列"><a href="#题四：不无聊序列" class="headerlink" title="题四：不无聊序列"></a>题四：不无聊序列</h2><h2 id="题五：二维平面的最近点对问题"><a href="#题五：二维平面的最近点对问题" class="headerlink" title="题五：二维平面的最近点对问题"></a>题五：二维平面的最近点对问题</h2><h2 id="题六：顺序统计量问题：第i小元素"><a href="#题六：顺序统计量问题：第i小元素" class="headerlink" title="题六：顺序统计量问题：第i小元素"></a>题六：顺序统计量问题：第i小元素</h2><h2 id="题七：整数划分"><a href="#题七：整数划分" class="headerlink" title="题七：整数划分"></a>题七：整数划分</h2><h2 id="题八：最大元和最小元"><a href="#题八：最大元和最小元" class="headerlink" title="题八：最大元和最小元"></a>题八：最大元和最小元</h2><h2 id="题九：整数划分"><a href="#题九：整数划分" class="headerlink" title="题九：整数划分"></a>题九：整数划分</h2><h2 id="题十：汉诺塔问题"><a href="#题十：汉诺塔问题" class="headerlink" title="题十：汉诺塔问题"></a>题十：汉诺塔问题</h2><h2 id="题十一：a的n次幂求法"><a href="#题十一：a的n次幂求法" class="headerlink" title="题十一：a的n次幂求法"></a>题十一：a的n次幂求法</h2>
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://ahpuchend.github.io/2019/10/16/梯度下降算法概述/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ahpudong">
-      <meta itemprop="description" content="昨夜西风凋碧树，独上高楼，望尽天涯路">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="AIdreamer">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/10/16/梯度下降算法概述/" class="post-title-link" itemprop="url">梯度下降算法概述</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2019-10-16 15:25:26" itemprop="dateCreated datePublished" datetime="2019-10-16T15:25:26+08:00">2019-10-16</time>
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://ahpuchend.github.io/2019/10/16/分类算法概述/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ahpudong">
-      <meta itemprop="description" content="昨夜西风凋碧树，独上高楼，望尽天涯路">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="AIdreamer">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/10/16/分类算法概述/" class="post-title-link" itemprop="url">分类算法概述</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2019-10-16 14:47:59" itemprop="dateCreated datePublished" datetime="2019-10-16T14:47:59+08:00">2019-10-16</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-18 20:59:37" itemprop="dateModified" datetime="2019-10-18T20:59:37+08:00">2019-10-18</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ML/" itemprop="url" rel="index"><span itemprop="name">ML</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="第一章-KNN算法"><a href="#第一章-KNN算法" class="headerlink" title="第一章 KNN算法"></a>第一章 KNN算法</h1><h2 id="1-1-问题定义："><a href="#1-1-问题定义：" class="headerlink" title="1.1 问题定义："></a>1.1 问题定义：</h2><p>给定m个已被分为Cn类个样本[监督算法],对未标记类别的测试数据data求其所属类别？</p><h2 id="1-2-算法描述："><a href="#1-2-算法描述：" class="headerlink" title="1.2 算法描述："></a>1.2 算法描述：</h2><p>1）计算测试数据与各个训练数据之间的距离；</p><p>2）按照距离的递增关系进行排序；</p><p>3）选取距离最小的K个点；</p><p>4）确定前K个点所在类别的出现频率；</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/10/16/分类算法概述/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
+          <h2 id="题三：素数判定问题"><a href="#题三：素数判定问题" class="headerlink" title="题三：素数判定问题"></a>题三：素数判定问题</h2><h2 id="题四：不无聊序列"><a href="#题四：不无聊序列" class="headerlink" title="题四：不无聊序列"></a>题四：不无聊序列</h2><h2 id="题五：二维平面的最近点对问题"><a href="#题五：二维平面的最近点对问题" class="headerlink" title="题五：二维平面的最近点对问题"></a>题五：二维平面的最近点对问题</h2><h2 id="题六：顺序统计量问题：第i小元素"><a href="#题六：顺序统计量问题：第i小元素" class="headerlink" title="题六：顺序统计量问题：第i小元素"></a>题六：顺序统计量问题：第i小元素</h2>
         
       
     </div>
@@ -1094,7 +1094,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1107,7 +1107,7 @@
             <a href="/categories/">
           
         
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">categories</span>
         </a>
       </div>
@@ -1120,7 +1120,7 @@
             <a href="/tags/">
           
         
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">tags</span>
         </a>
       </div>
