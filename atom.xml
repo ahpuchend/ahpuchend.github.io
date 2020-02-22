@@ -36,29 +36,6 @@
   </entry>
   
   <entry>
-    <title>test</title>
-    <link href="https://ahpuchend.github.io/2020/02/21/test/"/>
-    <id>https://ahpuchend.github.io/2020/02/21/test/</id>
-    <published>2020-02-21T15:16:05.000Z</published>
-    <updated>2020-02-21T15:16:40.310Z</updated>
-    
-    <content type="html"><![CDATA[<p>哈哈哈哈</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;哈哈哈哈&lt;/p&gt;
-
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
     <title>算法分析之回溯和分支限界</title>
     <link href="https://ahpuchend.github.io/2019/11/24/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B9%8B%E5%9B%9E%E6%BA%AF%E5%92%8C%E5%88%86%E6%94%AF%E9%99%90%E7%95%8C/"/>
     <id>https://ahpuchend.github.io/2019/11/24/算法分析之回溯和分支限界/</id>
@@ -450,6 +427,27 @@
     
     
       <category term="nju-python" scheme="https://ahpuchend.github.io/tags/nju-python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>寻找众数</title>
+    <link href="https://ahpuchend.github.io/2019/09/25/%E5%AF%BB%E6%89%BE%E4%BC%97%E6%95%B0/"/>
+    <id>https://ahpuchend.github.io/2019/09/25/寻找众数/</id>
+    <published>2019-09-25T13:23:08.000Z</published>
+    <updated>2019-11-24T07:45:41.999Z</updated>
+    
+    <content type="html"><![CDATA[<p>题目：给定一个序列，寻找序列中出现最多的数字，我们称这样的数字为该序列的“众数” 如[2,3,1,1,1]序列的众数为1</p><p><b> 法一：一般方法 时间 O(nlog(n)) 空间为不重复的数字数，建立一个二叉排序树，做统计。</b></p><p><b>法二：时空 O(n)方法:只适合在确定数字的范围时，且范围较小，可以开同样大的数组，遍历一边，一边遍历一边做统计</b></p><a id="more"></a><h1 id="法一code："><a href="#法一code：" class="headerlink" title="法一code："></a>法一code：</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">a = [6, 1, 8, 7, 9, 4, 4, 4, 6, 7,7,6,7,7,7]</span><br><span class="line"></span><br><span class="line">class Node:</span><br><span class="line">    def __init__(self, data):</span><br><span class="line">        self.count = 1</span><br><span class="line">        self.data = data</span><br><span class="line">        self.lchild = None</span><br><span class="line">        self.rchild = None</span><br><span class="line"></span><br><span class="line">def search(header, node):</span><br><span class="line"></span><br><span class="line">    if not header:</span><br><span class="line">        header=node</span><br><span class="line">        return header</span><br><span class="line">    if node.data == header.data:</span><br><span class="line">        header.count += 1</span><br><span class="line">    if node.data &lt; header.data:</span><br><span class="line">        lnode=search(header.lchild, node)</span><br><span class="line">        header.lchild=lnode</span><br><span class="line">    if node.data &gt; header.data:</span><br><span class="line">        rnode=search(header.rchild, node)</span><br><span class="line">        header.rchild=rnode</span><br><span class="line">    return header</span><br><span class="line"># 建立二叉排序树</span><br><span class="line">def creatTree():</span><br><span class="line">    header = Node(a[0])</span><br><span class="line">    for i in a[1:]:</span><br><span class="line">        node = Node(i)</span><br><span class="line">        root=search(header, node)</span><br><span class="line">    return header</span><br><span class="line"></span><br><span class="line">lists=[]</span><br><span class="line"># 遍历二叉树,求众数</span><br><span class="line">def getModenum(header):</span><br><span class="line">    if header:</span><br><span class="line">        dict = &#123;&apos;data&apos;:0, &apos;count&apos;:1&#125;</span><br><span class="line">        dict[&apos;data&apos;]=header.data</span><br><span class="line">        dict[&apos;count&apos;]=header.count</span><br><span class="line">        lists.append(dict)</span><br><span class="line">        getModenum(header.lchild)</span><br><span class="line">        getModenum(header.rchild)</span><br><span class="line">    return lists</span><br><span class="line"></span><br><span class="line">if __name__==&apos;__main__&apos;:</span><br><span class="line">    header=creatTree()</span><br><span class="line">    lis=getModenum(header)</span><br><span class="line">    modenum = lis[0]</span><br><span class="line">    for li in lis:</span><br><span class="line">        if(li[&apos;count&apos;]&gt;modenum[&apos;count&apos;]):</span><br><span class="line">            modenum=li</span><br><span class="line">    print(&apos;modenum is:&apos;)</span><br><span class="line">    print(modenum,modenum[&apos;data&apos;],modenum[&apos;count&apos;])</span><br></pre></td></tr></table></figure><h1 id="法二code"><a href="#法二code" class="headerlink" title="法二code:"></a>法二code:</h1><p><b>假设数字的范围为1-10，我们先开大小9的数组，然后顺序遍历一次，统计数字个数。</b><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">a = [6, 1, 8, 7, 9, 4, 4, 4, 6, 7,7,6,7,7,7]</span><br><span class="line">class Array:</span><br><span class="line">    def __init__(self,i):</span><br><span class="line">        self.index=i</span><br><span class="line">        self.count=0</span><br><span class="line">#开了大小9个“数组”</span><br><span class="line">def buildMap():</span><br><span class="line">    arrays=[Array(i+1) for i in range(0,10)]</span><br><span class="line">    print(arrays)</span><br><span class="line">    for i in a:</span><br><span class="line">        # print(i)</span><br><span class="line">        arrays[i-1].count+=1</span><br><span class="line">    return arrays</span><br><span class="line"></span><br><span class="line">def getModenum(arrays):</span><br><span class="line">    modenum=arrays[0]</span><br><span class="line">    for arr in arrays:</span><br><span class="line">        print(arr.index,arr.count)</span><br><span class="line">        if arr.count&gt;modenum.count:</span><br><span class="line">            modenum=arr</span><br><span class="line">    print(modenum.index,modenum.count)</span><br><span class="line"></span><br><span class="line">if __name__==&apos;__main__&apos;:</span><br><span class="line">    As=buildMap()</span><br><span class="line">    getModenum(As)</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;题目：给定一个序列，寻找序列中出现最多的数字，我们称这样的数字为该序列的“众数” 如[2,3,1,1,1]序列的众数为1&lt;/p&gt;&lt;p&gt;&lt;b&gt; 法一：一般方法 时间 O(nlog(n)) 空间为不重复的数字数，建立一个二叉排序树，做统计。&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;法二：时空 O(n)方法:只适合在确定数字的范围时，且范围较小，可以开同样大的数组，遍历一边，一边遍历一边做统计&lt;/b&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="分治" scheme="https://ahpuchend.github.io/tags/%E5%88%86%E6%B2%BB/"/>
     
   </entry>
   
